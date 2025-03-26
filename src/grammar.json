@@ -409,6 +409,10 @@
             {
               "type": "STRING",
               "value": "BrickColor"
+            },
+            {
+              "type": "STRING",
+              "value": "Instance"
             }
           ]
         },

@@ -39,10 +39,14 @@ type Time = DateTime
 type PreciseTime = DateTimeMillis
 type Paint = Color3
 type Block = BrickColor
+type Player = Instance
 
 ---
 
 (source_file
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
   (type_declaration
     name: (identifier)
     value: (primitive_type))

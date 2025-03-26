@@ -132,6 +132,7 @@ module.exports = grammar({
           "DateTimeMillis",
           "Color3",
           "BrickColor",
+          "Instance",
         ),
         optional($.range),
       ),
