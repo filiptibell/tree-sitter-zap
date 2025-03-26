@@ -1,0 +1,125 @@
+==================
+Output options
+==================
+
+opt server_output = "./server/network.lua"
+opt client_output = "./client/network.lua"
+opt types_output = "./shared/types.lua"
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string)))
+
+==================
+Remote options
+==================
+
+opt remote_scope = "NETWORK"
+opt remote_folder = "Remotes"
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string)))
+
+==================
+Behavior options
+==================
+
+opt casing = "snake_case"
+opt write_checks = true
+opt typescript = false
+opt manual_event_loop = true
+opt typescript_max_tuple_length = 10
+opt yield_type = "promise"
+opt disable_fire_all = false
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (number))
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (boolean)))
+
+==================
+Tooling options
+==================
+
+opt tooling = true
+opt tooling_output = "./tooling.lua"
+opt tooling_show_internal_data = false
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (boolean)))
+
+==================
+With comments
+==================
+
+-- Configure outputs
+opt server_output = "./server.lua"
+opt client_output = "./client.lua"
+
+-- Configure behavior
+opt write_checks = true
+opt typescript = false
+
+---
+
+(source_file
+  (comment)
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string))
+  (comment)
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean)))

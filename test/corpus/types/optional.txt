@@ -1,0 +1,160 @@
+==================
+Optional primitives
+==================
+
+type MaybeString = string?
+type MaybeNumber = u32?
+type MaybeVector = Vector3?
+type MaybeCFrame = CFrame?
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type))))
+
+==================
+Optional with ranges
+==================
+
+type MaybeSmallString = string(0..10)?
+type MaybeBigNumber = u32[100..]?
+type MaybeExactSize = string(20)?
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type
+        (range
+          (inclusive_range
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type
+        (range
+          (exact_range
+            (number)))))))
+
+==================
+Optional complex types
+==================
+
+type MaybeStruct = struct {
+    name: string,
+    age: u8
+}?
+
+type MaybeSet = set { string }?
+
+type MaybeMap = map { [string]: u32 }?
+
+type MaybeEnum = enum {
+    A, B, C
+}?
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (struct_type
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))
+        (struct_field
+          name: (identifier)
+          type: (primitive_type)))))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (set_type
+        type: (primitive_type))))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (map_type
+        key_type: (primitive_type)
+        value_type: (primitive_type))))
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (enum_type
+        (enum_unit_type
+          (identifier)
+          (identifier)
+          (identifier))))))
+
+==================
+Optional with comments
+==================
+
+-- Maybe it exists, maybe it doesn't
+type MaybeValue = string?
+
+type PlayerData = struct {
+    -- Optional fields
+    nickname: string?,
+    title: string(1..20)?,
+    -- Required fields
+    id: u32,
+    name: string
+}
+
+---
+
+(source_file
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (optional_type
+      inner: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (comment)
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (primitive_type)))
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (primitive_type
+            (range
+              (exclusive_range
+                (number)
+                (number))))))
+      (comment)
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type)))))

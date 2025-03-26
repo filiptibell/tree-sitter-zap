@@ -1,0 +1,223 @@
+==================
+Single value params
+==================
+
+funct GetString = {
+    call: Async,
+    args: string,
+    rets: boolean
+}
+
+funct GetNumber = {
+    call: Sync,
+    args: u32[0..100],
+    rets: string(1..20)
+}
+
+funct GetVector = {
+    call: Async,
+    args: Vector3,
+    rets: CFrame
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (primitive_type))
+    (function_rets_field
+      (primitive_type)))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (primitive_type
+        (range
+          (inclusive_range
+            (number)
+            (number)))))
+    (function_rets_field
+      (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (primitive_type))
+    (function_rets_field
+      (primitive_type))))
+
+==================
+Unnamed tuple params
+==================
+
+funct MultiArg = {
+    call: Async,
+    args: (string, u32, boolean),
+    rets: (Vector3, CFrame)
+}
+
+funct RangedArgs = {
+    call: Sync,
+    args: (string(1..20), u32[0..100], Vector3),
+    rets: (boolean, string(0..10))
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (event_data_tuple
+        type: (primitive_type)
+        type: (primitive_type)
+        type: (primitive_type)))
+    (function_rets_field
+      (event_data_tuple
+        type: (primitive_type)
+        type: (primitive_type))))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (event_data_tuple
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        type: (primitive_type)))
+    (function_rets_field
+      (event_data_tuple
+        type: (primitive_type)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))))))
+
+==================
+Named tuple params
+==================
+
+funct UpdatePlayer = {
+    call: Async,
+    args: (
+        name: string(3..20),
+        health: u8[0..100],
+        position: Vector3
+    ),
+    rets: (
+        success: boolean,
+        error: string
+    )
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (event_data_tuple
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        name: (identifier)
+        type: (primitive_type)))
+    (function_rets_field
+      (event_data_tuple
+        name: (identifier)
+        type: (primitive_type)
+        name: (identifier)
+        type: (primitive_type)))))
+
+==================
+With comments
+==================
+
+funct ComplexUpdate = {
+    call: Async,
+    -- Input parameters
+    args: (
+        -- Player name (3-20 chars)
+        name: string(3..20),
+        -- Current health points
+        health: u8[0..100],
+        -- World position
+        position: Vector3
+    ),
+    -- Return values
+    rets: (
+        -- Operation success
+        success: boolean,
+        -- Error message if any
+        error: string
+    )
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (comment)
+    (function_args_field
+      (event_data_tuple
+        (comment)
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))
+        (comment)
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        (comment)
+        name: (identifier)
+        type: (primitive_type)))
+    (comment)
+    (function_rets_field
+      (event_data_tuple
+        (comment)
+        name: (identifier)
+        type: (primitive_type)
+        (comment)
+        name: (identifier)
+        type: (primitive_type)))))

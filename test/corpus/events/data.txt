@@ -1,0 +1,242 @@
+==================
+Single value data
+==================
+
+event StringEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync,
+    data: string
+}
+
+event NumberEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync,
+    data: u32[0..100]
+}
+
+event VectorEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync,
+    data: Vector3
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (primitive_type)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (primitive_type
+        (range
+          (inclusive_range
+            (number)
+            (number))))))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (primitive_type))))
+
+==================
+Unnamed tuple data
+==================
+
+event SimpleValues = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync,
+    data: (string, u32, boolean)
+}
+
+event RangedValues = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync,
+    data: (string(1..20), u32[0..100], Vector3)
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (event_data_tuple
+        type: (primitive_type)
+        type: (primitive_type)
+        type: (primitive_type))))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (event_data_tuple
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        type: (primitive_type)))))
+
+==================
+Named tuple data
+==================
+
+event PlayerState = {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync,
+    data: (
+        position: Vector3,
+        health: u8[0..100],
+        name: string(3..20)
+    )
+}
+
+event ItemUpdate = {
+    from: Server,
+    type: Reliable,
+    call: ManySync,
+    data: (
+        id: string,
+        count: u32,
+        durability: f32,
+        equipped: boolean
+    )
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (event_data_tuple
+        name: (identifier)
+        type: (primitive_type)
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number)))))))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (event_data_tuple
+        name: (identifier)
+        type: (primitive_type)
+        name: (identifier)
+        type: (primitive_type)
+        name: (identifier)
+        type: (primitive_type)
+        name: (identifier)
+        type: (primitive_type)))))
+
+==================
+With comments
+==================
+
+event PlayerUpdate = {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync,
+    -- Player state data
+    data: (
+        -- Position in 3D space
+        position: Vector3,
+        -- Current health points
+        health: u8[0..100],
+        -- Display name (3-20 chars)
+        name: string(3..20)
+    )
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (comment)
+    (event_data_field
+      (event_data_tuple
+        (comment)
+        name: (identifier)
+        type: (primitive_type)
+        (comment)
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number))))
+        (comment)
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number))))))))

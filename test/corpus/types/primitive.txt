@@ -1,0 +1,162 @@
+==================
+Basic primitives
+==================
+
+type MyString = string
+type MyBool = boolean
+type MyFloat = f64
+type MyInt = i32
+type MyUInt = u32
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type)))
+
+==================
+Roblox types
+==================
+
+type Position = Vector3
+type Transform = CFrame
+type AlignedTransform = AlignedCFrame
+type Screen = Vector2
+type Time = DateTime
+type PreciseTime = DateTimeMillis
+type Paint = Color3
+type Block = BrickColor
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type)))
+
+==================
+Range constraints
+==================
+
+type SmallString = string(0..10)    -- Between 0 and 10
+type LongString = string(20..100)   -- Between 20 and 100
+type OpenString = string(10..)      -- At least 10
+type MaxString = string(..50)       -- At most 50
+type ExactString = string(30)       -- Exactly 30
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exclusive_range
+          (number)
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exclusive_range
+          (number)
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exclusive_range
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exclusive_range
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exact_range
+          (number)))))
+  (comment))
+
+==================
+Inclusive ranges
+==================
+
+type SmallNumber = u32[0..10]      -- Between 0 and 10, inclusive
+type BigNumber = u32[100..]        -- 100 or more
+type MaxNumber = u32[..50]         -- Up to 50
+type ExactNumber = u32[30]         -- Exactly 30
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (inclusive_range
+          (number)
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (inclusive_range
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (inclusive_range
+          (number)))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+      (range
+        (exact_range
+          (number)))))
+  (comment))

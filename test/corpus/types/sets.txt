@@ -1,0 +1,92 @@
+==================
+Simple sets
+==================
+
+type StringSet = set { string }
+type NumberSet = set { u32 }
+type BooleanSet = set { boolean }
+type VectorSet = set { Vector3 }
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type))))
+
+==================
+Sets with ranges
+==================
+
+type SmallStrings = set { string(0..10) }
+type LargeNumbers = set { u32[100..] }
+type ExactSize = set { string(20) }
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type
+        (range
+          (inclusive_range
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type
+        (range
+          (exact_range
+            (number)))))))
+
+==================
+Sets with comments
+==================
+
+-- Set of player names
+type Names = set { string }
+
+type Items = set {
+    -- Item identifiers
+    string(1..32)
+}
+
+---
+
+(source_file
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      (comment)
+      type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number)))))))

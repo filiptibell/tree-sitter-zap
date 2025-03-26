@@ -1,0 +1,75 @@
+==================
+Empty file
+==================
+
+---
+
+(source_file)
+
+==================
+Single comment
+==================
+
+-- This is a comment
+
+---
+
+(source_file
+  (comment))
+
+==================
+Multiple comments
+==================
+
+-- First comment
+-- Second comment
+-- Third comment
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment))
+
+==================
+Identifiers
+==================
+
+simple
+camelCase
+PascalCase
+snake_case
+with123numbers
+_underscore
+a
+
+---
+
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
+
+==================
+Mixed basics
+==================
+
+-- Comment at start
+identifier1
+-- Comment between
+identifier2
+-- Comment at end
+
+---
+
+(source_file
+  (comment)
+  (identifier)
+  (comment)
+  (identifier)
+  (comment))

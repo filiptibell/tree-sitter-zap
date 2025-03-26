@@ -1,0 +1,169 @@
+==================
+Simple maps
+==================
+
+type StringToNumber = map { [string]: u32 }
+type NumberToString = map { [u32]: string }
+type StringToBoolean = map { [string]: boolean }
+type StringToVector = map { [string]: Vector3 }
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type))))
+
+==================
+Maps with ranges
+==================
+
+type PlayerData = map { [string(3..20)]: u32[0..100] }
+type Inventory = map { [string]: u32[1..999] }
+type Scores = map { [string(1..16)]: u8 }
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))
+      value_type: (primitive_type
+        (range
+          (inclusive_range
+            (number)
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type
+        (range
+          (inclusive_range
+            (number)
+            (number))))))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))
+      value_type: (primitive_type))))
+
+==================
+Maps with structs
+==================
+
+type PlayerInventory = map {
+    [string]: struct {
+        count: u32,
+        durability: f32
+    }
+}
+
+type GameState = map {
+    [string(3..16)]: struct {
+        score: u32[0..1000],
+        position: Vector3,
+        alive: boolean
+    }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (struct_type
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))
+        (struct_field
+          name: (identifier)
+          type: (primitive_type)))))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))
+      value_type: (struct_type
+        (struct_field
+          name: (identifier)
+          type: (primitive_type
+            (range
+              (inclusive_range
+                (number)
+                (number)))))
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))))))
+
+==================
+Maps with comments
+==================
+
+-- Player data mapping
+type Players = map {
+    -- Player name to their data
+    [string]: struct {
+        -- Basic stats
+        health: u8,
+        mana: u8,
+        -- Position info
+        location: Vector3
+    }
+}
+
+---
+
+(source_file
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      (comment)
+      key_type: (primitive_type)
+      value_type: (struct_type
+        (comment)
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))
+        (comment)
+        (struct_field
+          name: (identifier)
+          type: (primitive_type))))))

@@ -1,0 +1,180 @@
+==================
+Minimal event
+==================
+
+event MyEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))
+
+==================
+All call types
+==================
+
+event ManyAsyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: ManyAsync
+}
+
+event ManySyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: ManySync
+}
+
+event SingleAsyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync
+}
+
+event SingleSyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: SingleSync
+}
+
+event PollingEvent = {
+    from: Client,
+    type: Reliable,
+    call: Polling
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))
+
+==================
+Reliability types
+==================
+
+event ReliableEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync
+}
+
+event UnreliableEvent = {
+    from: Server,
+    type: Unreliable,
+    call: ManyAsync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))
+
+==================
+With comments
+==================
+
+-- Server to client event
+event ServerEvent = {
+    from: Server,  -- Sent from server
+    type: Reliable,  -- Must arrive
+    call: ManyAsync  -- All clients receive it
+}
+
+-- Client to server event
+event ClientEvent = {
+    -- Event properties
+    from: Client,
+    type: Unreliable,
+    call: SingleSync
+}
+
+---
+
+(source_file
+  (comment)
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (comment)
+    (event_type_field
+      value: (event_type_value))
+    (comment)
+    (event_call_field
+      value: (event_call_value))
+    (comment))
+  (comment)
+  (event_declaration
+    name: (identifier)
+    (comment)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))

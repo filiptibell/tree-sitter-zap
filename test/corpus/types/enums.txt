@@ -1,0 +1,174 @@
+==================
+Simple unit enum
+==================
+
+type Status = enum {
+    Idle,
+    Walking,
+    Running,
+    Jumping
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (enum_type
+      (enum_unit_type
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)))))
+
+==================
+Unit enum with comments
+==================
+
+type Direction = enum {
+    -- Cardinal directions
+    North,
+    South,
+    East,
+    West,
+    -- Diagonal directions
+    NorthEast,
+    NorthWest,
+    SouthEast,
+    SouthWest
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (enum_type
+      (enum_unit_type
+        (comment)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (comment)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)))))
+
+==================
+Simple tagged enum
+==================
+
+type Value = enum "type" {
+    Number { value: f64 },
+    String { value: string },
+    Boolean { value: boolean }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (enum_type
+      (enum_tagged_type
+        (string)
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))))))
+
+==================
+Complex tagged enum
+==================
+
+type Shape = enum "kind" {
+    -- 2D shapes
+    Circle {
+        radius: f32,
+        center: Vector2
+    },
+    Rectangle {
+        width: f32,
+        height: f32,
+        position: Vector2
+    },
+    -- 3D shapes
+    Sphere {
+        radius: f32,
+        center: Vector3
+    },
+    Box {
+        size: Vector3,
+        position: Vector3,
+        rotation: CFrame
+    }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (enum_type
+      (enum_tagged_type
+        (string)
+        (comment)
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))
+        (comment)
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))
+        (enum_variant
+          name: (identifier)
+          fields: (enum_variant_fields
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))
+            (struct_field
+              name: (identifier)
+              type: (primitive_type))))))))

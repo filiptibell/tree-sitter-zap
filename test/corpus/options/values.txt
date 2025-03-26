@@ -1,0 +1,91 @@
+==================
+String values
+==================
+
+opt server_output = "simple.lua"
+opt client_output = "path/to/file.lua"
+opt remote_scope = "MY_NETWORK"
+opt casing = "snake_case"
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string))
+  (option_declaration
+    (option_name)
+    (string)))
+
+==================
+Boolean values
+==================
+
+opt write_checks = true
+opt typescript = false
+opt manual_event_loop = true
+opt tooling = false
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean))
+  (option_declaration
+    (option_name)
+    (boolean)))
+
+==================
+Number values
+==================
+
+opt typescript_max_tuple_length = 5
+opt typescript_max_tuple_length = 10
+opt typescript_max_tuple_length = 20
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (number))
+  (option_declaration
+    (option_name)
+    (number))
+  (option_declaration
+    (option_name)
+    (number)))
+
+==================
+Identifier values
+==================
+
+opt async_lib = MyPromise
+opt yield_type = promise
+opt casing = PascalCase
+
+---
+
+(source_file
+  (option_declaration
+    (option_name)
+    (identifier))
+  (option_declaration
+    (option_name)
+    (identifier))
+  (option_declaration
+    (option_name)
+    (identifier)))

@@ -1,0 +1,192 @@
+==================
+Empty declarations
+==================
+
+type Empty1 = struct {}
+type Empty2 = enum {}
+type Empty3 = set { string }
+type Empty4 = map { [string]: u32 }
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type))
+  (type_declaration
+    name: (identifier)
+    value: (enum_type
+      (enum_unit_type)))
+  (type_declaration
+    name: (identifier)
+    value: (set_type
+      type: (primitive_type)))
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (primitive_type))))
+
+==================
+Optional fields
+==================
+
+type ComplexOptionals = struct {
+    maybe_string: string?,
+    maybe_number: u32[0..100]?,
+    maybe_vector: Vector3?,
+    maybe_enum: enum { A, B }?
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (primitive_type)))
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (primitive_type
+            (range
+              (inclusive_range
+                (number)
+                (number))))))
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (primitive_type)))
+      (struct_field
+        name: (identifier)
+        type: (optional_type
+          inner: (enum_type
+            (enum_unit_type
+              (identifier)
+              (identifier))))))))
+
+==================
+Deep nesting
+==================
+
+type DeepMap = map {
+    [string]: map {
+        [u32]: map {
+            [string]: Vector3
+        }
+    }
+}
+
+type DeepStruct = struct {
+    outer: struct {
+        middle: struct {
+            inner: struct {
+                value: string
+            }
+        }
+    }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type)
+      value_type: (map_type
+        key_type: (primitive_type)
+        value_type: (map_type
+          key_type: (primitive_type)
+          value_type: (primitive_type)))))
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (struct_field
+        name: (identifier)
+        type: (struct_type
+          (struct_field
+            name: (identifier)
+            type: (struct_type
+              (struct_field
+                name: (identifier)
+                type: (struct_type
+                  (struct_field
+                    name: (identifier)
+                    type: (primitive_type)))))))))))
+
+==================
+Mixed everything
+==================
+
+type Kitchen = map {
+    [string(1..20)]: struct {
+        items: set { enum {
+            Pan,
+            Pot,
+            Plate
+        } },
+        temperature: u32[0..500]?,
+        metadata: map {
+            [string]: enum "type" {
+                Number { value: f64 },
+                Text { value: string(0..100) }
+            }
+        }
+    }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (map_type
+      key_type: (primitive_type
+        (range
+          (exclusive_range
+            (number)
+            (number))))
+      value_type: (struct_type
+        (struct_field
+          name: (identifier)
+          type: (set_type
+            type: (enum_type
+              (enum_unit_type
+                (identifier)
+                (identifier)
+                (identifier)))))
+        (struct_field
+          name: (identifier)
+          type: (optional_type
+            inner: (primitive_type
+              (range
+                (inclusive_range
+                  (number)
+                  (number))))))
+        (struct_field
+          name: (identifier)
+          type: (map_type
+            key_type: (primitive_type)
+            value_type: (enum_type
+              (enum_tagged_type
+                (string)
+                (enum_variant
+                  name: (identifier)
+                  fields: (enum_variant_fields
+                    (struct_field
+                      name: (identifier)
+                      type: (primitive_type))))
+                (enum_variant
+                  name: (identifier)
+                  fields: (enum_variant_fields
+                    (struct_field
+                      name: (identifier)
+                      type: (primitive_type
+                        (range
+                          (exclusive_range
+                            (number)
+                            (number)))))))))))))))

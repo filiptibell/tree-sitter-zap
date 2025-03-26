@@ -1,0 +1,70 @@
+==================
+Minimal function
+==================
+
+funct MyFunction = {
+    call: Async
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))))
+
+==================
+Both call types
+==================
+
+funct AsyncFunction = {
+    call: Async
+}
+
+funct SyncFunction = {
+    call: Sync
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value)))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))))
+
+==================
+With comments
+==================
+
+-- Async function
+funct AsyncGet = {
+    -- Always async
+    call: Async
+}
+
+-- Sync function
+funct SyncGet = {
+    call: Sync  -- Must be synchronous
+}
+
+---
+
+(source_file
+  (comment)
+  (function_declaration
+    name: (identifier)
+    (comment)
+    (function_call_field
+      value: (function_call_value)))
+  (comment)
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (comment)))

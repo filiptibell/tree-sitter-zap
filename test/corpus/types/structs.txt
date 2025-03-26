@@ -1,0 +1,121 @@
+==================
+Empty struct
+==================
+
+type Empty = struct {
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type)))
+
+==================
+Simple struct
+==================
+
+type Point = struct {
+    x: f32,
+    y: f32,
+    z: f32
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type)))))
+
+==================
+Mixed types struct
+==================
+
+type Player = struct {
+    name: string(3..20),
+    health: u8[0..100],
+    position: Vector3,
+    inventory: struct {
+        gold: u32,
+        items: string
+    }
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (struct_field
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (exclusive_range
+              (number)
+              (number)))))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type
+          (range
+            (inclusive_range
+              (number)
+              (number)))))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (struct_type
+          (struct_field
+            name: (identifier)
+            type: (primitive_type))
+          (struct_field
+            name: (identifier)
+            type: (primitive_type)))))))
+
+==================
+With comments
+==================
+
+type Config = struct {
+    -- Network settings
+    host: string,
+    port: u16,
+
+    -- Game settings
+    max_players: u8,
+    map_name: string
+}
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (struct_type
+      (comment)
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (comment)
+      (struct_field
+        name: (identifier)
+        type: (primitive_type))
+      (struct_field
+        name: (identifier)
+        type: (primitive_type)))))
