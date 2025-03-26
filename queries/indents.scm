@@ -1,25 +1,25 @@
+; Container types
 [
   (struct_type)
   (enum_type)
-  (enum_tagged_type)
   (enum_variant_fields)
   (event_declaration)
   (function_declaration)
 ] @indent
 
-; Indent contents between braces
+; Opening brackets
 [
   "{"
   "("
   "["
 ] @indent
 
-; Dedent on closing braces
+; Closing brackets
 [
   "}"
   ")"
   "]"
-] @outdent
+] @end
 
-; Ignore comments for indentation
+; Ignore comments
 (comment) @ignore
