@@ -12,7 +12,7 @@ module.exports = grammar({
 
   word: ($) => $.identifier,
 
-  extras: ($) => [/\s/, $.comment],
+  extras: ($) => [/\s/, $.doc_comment, $.comment],
 
   rules: {
     source_file: ($) => repeat($._definition),
@@ -27,6 +27,7 @@ module.exports = grammar({
       ),
 
     // Comments
+    doc_comment: ($) => token(seq("---", /.*/)),
     comment: ($) => token(seq("--", /.*/)),
 
     // Identifiers
