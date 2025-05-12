@@ -93,6 +93,8 @@
 (function_args_field "args" @property)
 (function_rets_field "rets" @property)
 
+(unknown_field (identifier) @property)
+
 ; Literals
 ["true" "false"] @boolean
 (boolean) @boolean
