@@ -177,6 +177,7 @@ module.exports = grammar({
                   $.event_type_field,
                   $.event_call_field,
                   $.event_data_field,
+                  $.unknown_field,
                 ),
               ),
             ),
@@ -223,7 +224,7 @@ module.exports = grammar({
       ),
 
     event_data_field: ($) =>
-      seq("data", ":", choice($._type, $.event_data_tuple)),
+      seq("data", ":", choice($.event_data_tuple, $._type)),
 
     event_data_tuple: ($) =>
       seq(
@@ -260,7 +261,14 @@ module.exports = grammar({
           seq(
             $.function_call_field,
             repeat(
-              seq(",", choice($.function_args_field, $.function_rets_field)),
+              seq(
+                ",",
+                choice(
+                  $.function_args_field,
+                  $.function_rets_field,
+                  $.unknown_field,
+                ),
+              ),
             ),
             optional(","),
           ),
@@ -280,8 +288,8 @@ module.exports = grammar({
         "args",
         ":",
         choice(
-          $._type,
           $.event_data_tuple, // We can reuse the tuple syntax from events
+          $._type,
         ),
       ),
 
@@ -290,8 +298,8 @@ module.exports = grammar({
         "rets",
         ":",
         choice(
-          $._type,
           $.event_data_tuple, // We can reuse the tuple syntax from events
+          $._type,
         ),
       ),
 
@@ -315,5 +323,6 @@ module.exports = grammar({
     string: ($) => token(/"[^"]*"/),
     number: ($) => /\d+/,
     boolean: ($) => choice("true", "false"),
+    unknown_field: ($) => seq($.identifier, ":", choice($._type)),
   },
 });

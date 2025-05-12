@@ -845,6 +845,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "event_data_field"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "unknown_field"
                           }
                         ]
                       }
@@ -1009,11 +1013,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_type"
+              "name": "event_data_tuple"
             },
             {
               "type": "SYMBOL",
-              "name": "event_data_tuple"
+              "name": "_type"
             }
           ]
         }
@@ -1197,6 +1201,10 @@
                           {
                             "type": "SYMBOL",
                             "name": "function_rets_field"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "unknown_field"
                           }
                         ]
                       }
@@ -1279,11 +1287,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_type"
+              "name": "event_data_tuple"
             },
             {
               "type": "SYMBOL",
-              "name": "event_data_tuple"
+              "name": "_type"
             }
           ]
         }
@@ -1305,11 +1313,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_type"
+              "name": "event_data_tuple"
             },
             {
               "type": "SYMBOL",
-              "name": "event_data_tuple"
+              "name": "_type"
             }
           ]
         }
@@ -1406,6 +1414,28 @@
         {
           "type": "STRING",
           "value": "false"
+        }
+      ]
+    },
+    "unknown_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_type"
+            }
+          ]
         }
       ]
     }

@@ -241,6 +241,10 @@
         {
           "type": "event_type_field",
           "named": true
+        },
+        {
+          "type": "unknown_field",
+          "named": true
         }
       ]
     }
@@ -395,6 +399,10 @@
         },
         {
           "type": "function_rets_field",
+          "named": true
+        },
+        {
+          "type": "unknown_field",
           "named": true
         }
       ]
@@ -822,6 +830,45 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "unknown_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "map_type",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "set_type",
+          "named": true
+        },
+        {
+          "type": "struct_type",
+          "named": true
+        }
+      ]
     }
   },
   {
