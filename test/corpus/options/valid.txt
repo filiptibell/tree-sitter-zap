@@ -10,13 +10,13 @@ opt types_output = "./shared/types.lua"
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string)))
 
 ==================
@@ -30,10 +30,10 @@ opt remote_folder = "Remotes"
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string)))
 
 ==================
@@ -52,25 +52,25 @@ opt disable_fire_all = false
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (number))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean)))
 
 ==================
@@ -85,13 +85,13 @@ opt tooling_show_internal_data = false
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean)))
 
 ==================
@@ -111,15 +111,15 @@ opt typescript = false
 (source_file
   (comment)
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (comment)
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean)))

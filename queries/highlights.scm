@@ -64,8 +64,7 @@
 
 ; Options and Variables
 (option_declaration
-(option_name) @variable)
-
+(identifier) @variable)
 (identifier) @variable
 
 ; Declarations

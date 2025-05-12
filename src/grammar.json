@@ -79,78 +79,8 @@
           "value": "opt"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "server_output"
-              },
-              {
-                "type": "STRING",
-                "value": "client_output"
-              },
-              {
-                "type": "STRING",
-                "value": "types_output"
-              },
-              {
-                "type": "STRING",
-                "value": "remote_scope"
-              },
-              {
-                "type": "STRING",
-                "value": "remote_folder"
-              },
-              {
-                "type": "STRING",
-                "value": "casing"
-              },
-              {
-                "type": "STRING",
-                "value": "write_checks"
-              },
-              {
-                "type": "STRING",
-                "value": "typescript"
-              },
-              {
-                "type": "STRING",
-                "value": "manual_event_loop"
-              },
-              {
-                "type": "STRING",
-                "value": "typescript_max_tuple_length"
-              },
-              {
-                "type": "STRING",
-                "value": "yield_type"
-              },
-              {
-                "type": "STRING",
-                "value": "async_lib"
-              },
-              {
-                "type": "STRING",
-                "value": "tooling"
-              },
-              {
-                "type": "STRING",
-                "value": "tooling_output"
-              },
-              {
-                "type": "STRING",
-                "value": "tooling_show_internal_data"
-              },
-              {
-                "type": "STRING",
-                "value": "disable_fire_all"
-              }
-            ]
-          },
-          "named": true,
-          "value": "option_name"
+          "type": "SYMBOL",
+          "name": "_option_name"
         },
         {
           "type": "STRING",
@@ -162,74 +92,9 @@
         }
       ]
     },
-    "option_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "server_output"
-        },
-        {
-          "type": "STRING",
-          "value": "client_output"
-        },
-        {
-          "type": "STRING",
-          "value": "types_output"
-        },
-        {
-          "type": "STRING",
-          "value": "remote_scope"
-        },
-        {
-          "type": "STRING",
-          "value": "remote_folder"
-        },
-        {
-          "type": "STRING",
-          "value": "casing"
-        },
-        {
-          "type": "STRING",
-          "value": "write_checks"
-        },
-        {
-          "type": "STRING",
-          "value": "typescript"
-        },
-        {
-          "type": "STRING",
-          "value": "manual_event_loop"
-        },
-        {
-          "type": "STRING",
-          "value": "typescript_max_tuple_length"
-        },
-        {
-          "type": "STRING",
-          "value": "yield_type"
-        },
-        {
-          "type": "STRING",
-          "value": "async_lib"
-        },
-        {
-          "type": "STRING",
-          "value": "tooling"
-        },
-        {
-          "type": "STRING",
-          "value": "tooling_output"
-        },
-        {
-          "type": "STRING",
-          "value": "tooling_show_internal_data"
-        },
-        {
-          "type": "STRING",
-          "value": "disable_fire_all"
-        }
-      ]
+    "_option_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "_option_value": {
       "type": "CHOICE",
@@ -307,6 +172,10 @@
         {
           "type": "SYMBOL",
           "name": "map_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
@@ -338,6 +207,10 @@
               {
                 "type": "SYMBOL",
                 "name": "map_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
               }
             ]
           }

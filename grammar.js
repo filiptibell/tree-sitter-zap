@@ -34,54 +34,9 @@ module.exports = grammar({
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     // Options
-    option_declaration: ($) =>
-      seq(
-        "opt",
-        alias(
-          choice(
-            "server_output",
-            "client_output",
-            "types_output",
-            "remote_scope",
-            "remote_folder",
-            "casing",
-            "write_checks",
-            "typescript",
-            "manual_event_loop",
-            "typescript_max_tuple_length",
-            "yield_type",
-            "async_lib",
-            "tooling",
-            "tooling_output",
-            "tooling_show_internal_data",
-            "disable_fire_all",
-          ),
-          $.option_name,
-        ),
-        "=",
-        $._option_value,
-      ),
+    option_declaration: ($) => seq("opt", $._option_name, "=", $._option_value),
 
-    option_name: ($) =>
-      choice(
-        "server_output",
-        "client_output",
-        "types_output",
-        "remote_scope",
-        "remote_folder",
-        "casing",
-        "write_checks",
-        "typescript",
-        "manual_event_loop",
-        "typescript_max_tuple_length",
-        "yield_type",
-        "async_lib",
-        "tooling",
-        "tooling_output",
-        "tooling_show_internal_data",
-        "disable_fire_all",
-      ),
-
+    _option_name: ($) => $.identifier,
     _option_value: ($) => choice($.string, $.number, $.boolean, $.identifier),
 
     // Types
@@ -95,6 +50,7 @@ module.exports = grammar({
         $.enum_type,
         $.set_type,
         $.map_type,
+        $.identifier,
       ),
 
     optional_type: ($) =>
@@ -107,6 +63,7 @@ module.exports = grammar({
             $.enum_type,
             $.set_type,
             $.map_type,
+            $.identifier,
           ),
         ),
         "?",

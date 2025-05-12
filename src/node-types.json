@@ -131,6 +131,10 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "map_type",
           "named": true
         },
@@ -173,6 +177,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -316,6 +324,10 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "map_type",
           "named": true
         },
@@ -405,6 +417,10 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "map_type",
           "named": true
         },
@@ -455,6 +471,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "map_type",
             "named": true
           },
@@ -482,6 +502,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -529,10 +553,6 @@
           "named": true
         },
         {
-          "type": "option_name",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         }
@@ -549,6 +569,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -619,6 +643,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -700,6 +728,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "map_type",
             "named": true
           },
@@ -758,6 +790,10 @@
         "types": [
           {
             "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
@@ -955,10 +991,6 @@
     "named": false
   },
   {
-    "type": "option_name",
-    "named": true
-  },
-  {
     "type": "rets",
     "named": false
   },
@@ -968,11 +1000,11 @@
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "struct",

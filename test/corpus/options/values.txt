@@ -11,16 +11,16 @@ opt casing = "snake_case"
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string))
   (option_declaration
-    (option_name)
+    (identifier)
     (string)))
 
 ==================
@@ -36,16 +36,16 @@ opt tooling = false
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean))
   (option_declaration
-    (option_name)
+    (identifier)
     (boolean)))
 
 ==================
@@ -60,13 +60,13 @@ opt typescript_max_tuple_length = 20
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (number))
   (option_declaration
-    (option_name)
+    (identifier)
     (number))
   (option_declaration
-    (option_name)
+    (identifier)
     (number)))
 
 ==================
@@ -81,11 +81,11 @@ opt casing = PascalCase
 
 (source_file
   (option_declaration
-    (option_name)
+    (identifier)
     (identifier))
   (option_declaration
-    (option_name)
+    (identifier)
     (identifier))
   (option_declaration
-    (option_name)
+    (identifier)
     (identifier)))
