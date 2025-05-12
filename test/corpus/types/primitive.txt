@@ -39,7 +39,9 @@ type Time = DateTime
 type PreciseTime = DateTimeMillis
 type Paint = Color3
 type Block = BrickColor
-type Player = Instance
+type AnyInstance = Instance
+type PlayerInstance = Instance(Player)
+type PlayerInstanceSpaced = Instance (Player)
 
 ---
 
@@ -70,7 +72,15 @@ type Player = Instance
     value: (primitive_type))
   (type_declaration
     name: (identifier)
-    value: (primitive_type)))
+    value: (primitive_type))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+    	(identifier)))
+  (type_declaration
+    name: (identifier)
+    value: (primitive_type
+    	(identifier))))
 
 ==================
 Range constraints

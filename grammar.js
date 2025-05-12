@@ -91,6 +91,7 @@ module.exports = grammar({
           "Color3",
           "BrickColor",
           "Instance",
+          seq("Instance", "(", $.identifier, ")"),
         ),
         optional($.range),
       ),
