@@ -44,11 +44,11 @@ type ComplexOptionals = struct {
   (type_declaration
     name: (identifier)
     value: (struct_type
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (primitive_type)))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (primitive_type
@@ -56,11 +56,11 @@ type ComplexOptionals = struct {
               (inclusive_range
                 (number)
                 (number))))))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (primitive_type)))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (enum_type
@@ -105,16 +105,16 @@ type DeepStruct = struct {
   (type_declaration
     name: (identifier)
     value: (struct_type
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (struct_type
-          (struct_field
+          properties: (property
             name: (identifier)
             type: (struct_type
-              (struct_field
+              properties: (property
                 name: (identifier)
                 type: (struct_type
-                  (struct_field
+                  properties: (property
                     name: (identifier)
                     type: (primitive_type)))))))))))
 
@@ -151,7 +151,7 @@ type Kitchen = map {
             (number)
             (number))))
       value_type: (struct_type
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (set_type
             type: (enum_type
@@ -159,7 +159,7 @@ type Kitchen = map {
                 (identifier)
                 (identifier)
                 (identifier)))))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (optional_type
             inner: (primitive_type
@@ -167,26 +167,24 @@ type Kitchen = map {
                 (inclusive_range
                   (number)
                   (number))))))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (map_type
             key_type: (primitive_type)
             value_type: (enum_type
               (enum_tagged_type
                 (string)
-                (enum_variant
+                (enum_tagged_variant
                   name: (identifier)
-                  fields: (enum_variant_fields
-                    (struct_field
-                      name: (identifier)
-                      type: (primitive_type))))
-                (enum_variant
+                  properties: (property
+                    name: (identifier)
+                    type: (primitive_type)))
+                (enum_tagged_variant
                   name: (identifier)
-                  fields: (enum_variant_fields
-                    (struct_field
-                      name: (identifier)
-                      type: (primitive_type
-                        (range
-                          (exclusive_range
-                            (number)
-                            (number)))))))))))))))
+                  properties: (property
+                    name: (identifier)
+                    type: (primitive_type
+                      (range
+                        (exclusive_range
+                          (number)
+                          (number))))))))))))))

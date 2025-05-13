@@ -85,10 +85,10 @@ type MaybeEnum = enum {
     name: (identifier)
     value: (optional_type
       inner: (struct_type
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type)))))
   (type_declaration
@@ -139,11 +139,11 @@ type PlayerData = struct {
     name: (identifier)
     value: (struct_type
       (comment)
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (primitive_type)))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (optional_type
           inner: (primitive_type
@@ -152,9 +152,9 @@ type PlayerData = struct {
                 (number)
                 (number))))))
       (comment)
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type)))))

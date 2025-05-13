@@ -13,7 +13,7 @@
       "required": true,
       "types": [
         {
-          "type": "enum_variant",
+          "type": "enum_tagged_variant",
           "named": true
         },
         {
@@ -21,6 +21,40 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "enum_tagged_variant",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "properties": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "property",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -52,47 +86,6 @@
       "types": [
         {
           "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "enum_variant",
-    "named": true,
-    "fields": {
-      "fields": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "enum_variant_fields",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "enum_variant_fields",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "struct_field",
           "named": true
         }
       ]
@@ -243,7 +236,7 @@
           "named": true
         },
         {
-          "type": "unknown_field",
+          "type": "property",
           "named": true
         }
       ]
@@ -402,7 +395,7 @@
           "named": true
         },
         {
-          "type": "unknown_field",
+          "type": "property",
           "named": true
         }
       ]
@@ -623,6 +616,56 @@
     }
   },
   {
+    "type": "property",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "map_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
+            "type": "set_type",
+            "named": true
+          },
+          {
+            "type": "struct_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "range",
     "named": true,
     "fields": {},
@@ -718,68 +761,27 @@
     }
   },
   {
-    "type": "struct_field",
+    "type": "struct_type",
     "named": true,
     "fields": {
-      "name": {
-        "multiple": false,
+      "properties": {
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "enum_type",
+            "type": "property",
             "named": true
           },
           {
-            "type": "identifier",
-            "named": true
+            "type": "{",
+            "named": false
           },
           {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
-            "named": true
+            "type": "}",
+            "named": false
           }
         ]
       }
-    }
-  },
-  {
-    "type": "struct_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "struct_field",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -830,45 +832,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "unknown_field",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "map_type",
-          "named": true
-        },
-        {
-          "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "set_type",
-          "named": true
-        },
-        {
-          "type": "struct_type",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1051,11 +1014,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

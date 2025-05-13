@@ -11,7 +11,7 @@ module.exports = grammar({
   name: "zap",
 
   word: ($) => $.identifier,
-
+  conflicts: ($) => [[$.property]],
   extras: ($) => [/\s/, $.doc_comment, $.comment],
 
   rules: {
@@ -34,10 +34,13 @@ module.exports = grammar({
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     // Options
-    option_declaration: ($) => seq("opt", $._option_name, "=", $._option_value),
-
-    _option_name: ($) => $.identifier,
-    _option_value: ($) => choice($.string, $.number, $.boolean, $.identifier),
+    option_declaration: ($) =>
+      seq(
+        "opt",
+        $.identifier,
+        "=",
+        choice($.string, $.number, $.boolean, $.identifier),
+      ),
 
     // Types
     type_declaration: ($) =>
@@ -109,55 +112,27 @@ module.exports = grammar({
 
     // Structs
     struct_type: ($) =>
-      seq(
-        "struct",
-        "{",
-        optional(
-          seq($.struct_field, repeat(seq(",", $.struct_field)), optional(",")),
-        ),
-        "}",
-      ),
-
-    struct_field: ($) =>
-      seq(field("name", $.identifier), ":", field("type", $._type)),
+      seq("struct", field("properties", seq("{", repeat($.property), "}"))),
 
     // Enums
     enum_type: ($) => choice($.enum_unit_type, $.enum_tagged_type),
 
     enum_unit_type: ($) =>
-      seq(
-        "enum",
-        "{",
-        optional(
-          seq($.identifier, repeat(seq(",", $.identifier)), optional(",")),
-        ),
-        "}",
-      ),
+      seq("enum", "{", repeat(seq($.identifier, optional(","))), "}"),
 
     enum_tagged_type: ($) =>
       seq(
         "enum",
         $.string,
         "{",
-        optional(
-          seq($.enum_variant, repeat(seq(",", $.enum_variant)), optional(",")),
-        ),
+        repeat(seq($.enum_tagged_variant, optional(","))),
         "}",
       ),
 
-    enum_variant: ($) =>
+    enum_tagged_variant: ($) =>
       seq(
         field("name", $.identifier),
-        field("fields", optional($.enum_variant_fields)),
-      ),
-
-    enum_variant_fields: ($) =>
-      seq(
-        "{",
-        optional(
-          seq($.struct_field, repeat(seq(",", $.struct_field)), optional(",")),
-        ),
-        "}",
+        optional(field("properties", seq("{", repeat($.property), "}"))),
       ),
 
     // Events
@@ -177,7 +152,7 @@ module.exports = grammar({
                   $.event_type_field,
                   $.event_call_field,
                   $.event_data_field,
-                  $.unknown_field,
+                  $.property,
                 ),
               ),
             ),
@@ -266,7 +241,7 @@ module.exports = grammar({
                 choice(
                   $.function_args_field,
                   $.function_rets_field,
-                  $.unknown_field,
+                  $.property,
                 ),
               ),
             ),
@@ -323,6 +298,12 @@ module.exports = grammar({
     string: ($) => token(/"[^"]*"/),
     number: ($) => /\d+/,
     boolean: ($) => choice("true", "false"),
-    unknown_field: ($) => seq($.identifier, ":", choice($._type)),
+    property: ($) =>
+      seq(
+        field("name", $.identifier),
+        ":",
+        field("type", $._type),
+        optional(","),
+      ),
   },
 });

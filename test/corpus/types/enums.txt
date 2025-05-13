@@ -74,24 +74,21 @@ type Value = enum "type" {
     value: (enum_type
       (enum_tagged_type
         (string)
-        (enum_variant
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))
-        (enum_variant
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))
-        (enum_variant
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))))))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))))))
 
 ==================
 Complex tagged enum
@@ -129,46 +126,42 @@ type Shape = enum "kind" {
       (enum_tagged_type
         (string)
         (comment)
-        (enum_variant
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))
-        (enum_variant
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))
         (comment)
-        (enum_variant
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))
-        (enum_variant
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))
+        (enum_tagged_variant
           name: (identifier)
-          fields: (enum_variant_fields
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))
-            (struct_field
-              name: (identifier)
-              type: (primitive_type))))))))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type))
+          properties: (property
+            name: (identifier)
+            type: (primitive_type)))))))

@@ -101,10 +101,10 @@ type GameState = map {
     value: (map_type
       key_type: (primitive_type)
       value_type: (struct_type
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type)))))
   (type_declaration
@@ -116,17 +116,17 @@ type GameState = map {
             (number)
             (number))))
       value_type: (struct_type
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type
             (range
               (inclusive_range
                 (number)
                 (number)))))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))))))
 
@@ -157,13 +157,13 @@ type Players = map {
       key_type: (primitive_type)
       value_type: (struct_type
         (comment)
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))
         (comment)
-        (struct_field
+        properties: (property
           name: (identifier)
           type: (primitive_type))))))

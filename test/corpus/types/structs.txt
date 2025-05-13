@@ -28,13 +28,13 @@ type Point = struct {
   (type_declaration
     name: (identifier)
     value: (struct_type
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type)))))
 
@@ -58,30 +58,30 @@ type Player = struct {
   (type_declaration
     name: (identifier)
     value: (struct_type
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type
           (range
             (exclusive_range
               (number)
               (number)))))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type
           (range
             (inclusive_range
               (number)
               (number)))))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (struct_type
-          (struct_field
+          properties: (property
             name: (identifier)
             type: (primitive_type))
-          (struct_field
+          properties: (property
             name: (identifier)
             type: (primitive_type)))))))
 
@@ -106,16 +106,16 @@ type Config = struct {
     name: (identifier)
     value: (struct_type
       (comment)
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
       (comment)
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type))
-      (struct_field
+      properties: (property
         name: (identifier)
         type: (primitive_type)))))
