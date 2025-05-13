@@ -11,7 +11,7 @@ module.exports = grammar({
   name: "zap",
 
   word: ($) => $.identifier,
-  conflicts: ($) => [[$.property]],
+
   extras: ($) => [/\s/, $.doc_comment, $.comment],
 
   rules: {
@@ -142,21 +142,13 @@ module.exports = grammar({
         field("name", $.identifier),
         "=",
         "{",
-        optional(
-          seq(
+        repeat(
+          choice(
             $.event_from_field,
-            repeat(
-              seq(
-                ",",
-                choice(
-                  $.event_type_field,
-                  $.event_call_field,
-                  $.event_data_field,
-                  $.property,
-                ),
-              ),
-            ),
-            optional(","),
+            $.event_type_field,
+            $.event_call_field,
+            $.event_data_field,
+            $.property,
           ),
         ),
         "}",
@@ -167,6 +159,7 @@ module.exports = grammar({
         "from",
         ":",
         field("value", alias(choice("Server", "Client"), $.event_from_value)),
+        optional(","),
       ),
 
     event_type_field: ($) =>
@@ -177,6 +170,7 @@ module.exports = grammar({
           "value",
           alias(choice("Reliable", "Unreliable"), $.event_type_value),
         ),
+        optional(","),
       ),
 
     event_call_field: ($) =>
@@ -196,10 +190,11 @@ module.exports = grammar({
             $.event_call_value,
           ),
         ),
+        optional(","),
       ),
 
     event_data_field: ($) =>
-      seq("data", ":", choice($.event_data_tuple, $._type)),
+      seq("data", ":", choice($.event_data_tuple, $._type), optional(",")),
 
     event_data_tuple: ($) =>
       seq(
@@ -232,20 +227,12 @@ module.exports = grammar({
         field("name", $.identifier),
         "=",
         "{",
-        optional(
-          seq(
+        repeat(
+          choice(
             $.function_call_field,
-            repeat(
-              seq(
-                ",",
-                choice(
-                  $.function_args_field,
-                  $.function_rets_field,
-                  $.property,
-                ),
-              ),
-            ),
-            optional(","),
+            $.function_args_field,
+            $.function_rets_field,
+            $.property,
           ),
         ),
         "}",
@@ -256,6 +243,7 @@ module.exports = grammar({
         "call",
         ":",
         field("value", alias(choice("Async", "Sync"), $.function_call_value)),
+        optional(","),
       ),
 
     function_args_field: ($) =>
@@ -266,6 +254,7 @@ module.exports = grammar({
           $.event_data_tuple, // We can reuse the tuple syntax from events
           $._type,
         ),
+        optional(","),
       ),
 
     function_rets_field: ($) =>
@@ -276,6 +265,7 @@ module.exports = grammar({
           $.event_data_tuple, // We can reuse the tuple syntax from events
           $._type,
         ),
+        optional(","),
       ),
 
     // Sets
