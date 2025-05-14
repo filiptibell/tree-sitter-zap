@@ -1,0 +1,107 @@
+==================
+Invalid from types
+==================
+
+event FromClientEvent = {
+    from: Cliiient,
+    type: Reliable,
+    call: ManyAsync
+}
+
+event FromServerEvent = {
+    from: Serveeer,
+    type: Reliable,
+    call: ManyAsync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (identifier))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (identifier))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))
+
+==================
+Invalid call types
+==================
+
+event ManyAsyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: MaaanyAsync
+}
+
+event ManySyncEvent = {
+    from: Client,
+    type: Reliable,
+    call: ManySyyync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (identifier)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (identifier))))
+
+==================
+Invalid reliability types
+==================
+
+event ReliableEvent = {
+    from: Server,
+    type: Reliable,
+    call: MaaanyAsync
+}
+
+event UnreliableEvent = {
+    from: Server,
+    type: Unreliable,
+    call: ManyAsyyync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (identifier)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (identifier))))

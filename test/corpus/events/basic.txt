@@ -21,6 +21,42 @@ event MyEvent = {
       value: (event_call_value))))
 
 ==================
+All from types
+==================
+
+event FromClientEvent = {
+    from: Client,
+    type: Reliable,
+    call: ManyAsync
+}
+
+event FromServerEvent = {
+    from: Server,
+    type: Reliable,
+    call: ManyAsync
+}
+
+---
+
+(source_file
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value)))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))))
+
+==================
 All call types
 ==================
 

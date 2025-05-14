@@ -158,40 +158,29 @@ module.exports = grammar({
       seq(
         "from",
         ":",
-        field("value", alias(choice("Server", "Client"), $.event_from_value)),
+        field("value", choice($.event_from_value, $.identifier)),
         optional(","),
       ),
+    event_from_value: () => choice("Server", "Client"),
 
     event_type_field: ($) =>
       seq(
         "type",
         ":",
-        field(
-          "value",
-          alias(choice("Reliable", "Unreliable"), $.event_type_value),
-        ),
+        field("value", choice($.event_type_value, $.identifier)),
         optional(","),
       ),
+    event_type_value: () => choice("Reliable", "Unreliable"),
 
     event_call_field: ($) =>
       seq(
         "call",
         ":",
-        field(
-          "value",
-          alias(
-            choice(
-              "ManyAsync",
-              "ManySync",
-              "SingleAsync",
-              "SingleSync",
-              "Polling",
-            ),
-            $.event_call_value,
-          ),
-        ),
+        field("value", choice($.event_call_value, $.identifier)),
         optional(","),
       ),
+    event_call_value: () =>
+      choice("ManyAsync", "ManySync", "SingleAsync", "SingleSync", "Polling"),
 
     event_data_field: ($) =>
       seq("data", ":", choice($.event_data_tuple, $._type), optional(",")),
@@ -242,9 +231,10 @@ module.exports = grammar({
       seq(
         "call",
         ":",
-        field("value", alias(choice("Async", "Sync"), $.function_call_value)),
+        field("value", choice($.function_call_value, $.identifier)),
         optional(","),
       ),
+    function_call_value: () => choice("Async", "Sync"),
 
     function_args_field: ($) =>
       seq(
@@ -285,9 +275,9 @@ module.exports = grammar({
       ),
 
     // Basic values
-    string: ($) => token(/"[^"]*"/),
-    number: ($) => /\d+/,
-    boolean: ($) => choice("true", "false"),
+    string: () => token(/"[^"]*"/),
+    number: () => /\d+/,
+    boolean: () => choice("true", "false"),
     property: ($) =>
       seq(
         field("name", $.identifier),

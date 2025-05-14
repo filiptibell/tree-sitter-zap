@@ -102,10 +102,19 @@
           {
             "type": "event_call_value",
             "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "event_call_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "event_data_field",
@@ -253,10 +262,19 @@
           {
             "type": "event_from_value",
             "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "event_from_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "event_type_field",
@@ -269,10 +287,19 @@
           {
             "type": "event_type_value",
             "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "event_type_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "exact_range",
@@ -358,10 +385,19 @@
           {
             "type": "function_call_value",
             "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "function_call_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "function_declaration",
@@ -867,11 +903,19 @@
     "named": false
   },
   {
+    "type": "Async",
+    "named": false
+  },
+  {
     "type": "BrickColor",
     "named": false
   },
   {
     "type": "CFrame",
+    "named": false
+  },
+  {
+    "type": "Client",
     "named": false
   },
   {
@@ -888,6 +932,42 @@
   },
   {
     "type": "Instance",
+    "named": false
+  },
+  {
+    "type": "ManyAsync",
+    "named": false
+  },
+  {
+    "type": "ManySync",
+    "named": false
+  },
+  {
+    "type": "Polling",
+    "named": false
+  },
+  {
+    "type": "Reliable",
+    "named": false
+  },
+  {
+    "type": "Server",
+    "named": false
+  },
+  {
+    "type": "SingleAsync",
+    "named": false
+  },
+  {
+    "type": "SingleSync",
+    "named": false
+  },
+  {
+    "type": "Sync",
+    "named": false
+  },
+  {
+    "type": "Unreliable",
     "named": false
   },
   {
@@ -941,18 +1021,6 @@
     "named": false
   },
   {
-    "type": "event_call_value",
-    "named": true
-  },
-  {
-    "type": "event_from_value",
-    "named": true
-  },
-  {
-    "type": "event_type_value",
-    "named": true
-  },
-  {
     "type": "f32",
     "named": false
   },
@@ -971,10 +1039,6 @@
   {
     "type": "funct",
     "named": false
-  },
-  {
-    "type": "function_call_value",
-    "named": true
   },
   {
     "type": "i16",

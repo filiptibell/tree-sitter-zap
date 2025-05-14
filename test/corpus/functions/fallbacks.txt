@@ -1,0 +1,23 @@
+==================
+Invalid call types
+==================
+
+funct AsyncFunction = {
+    call: Aaasync
+}
+
+funct SyncFunction = {
+    call: Syyync
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (identifier)))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (identifier))))

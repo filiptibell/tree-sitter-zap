@@ -715,22 +715,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "Server"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Client"
-                }
-              ]
-            },
-            "named": true,
-            "value": "event_from_value"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "event_from_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         },
         {
@@ -744,6 +739,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "event_from_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Server"
+        },
+        {
+          "type": "STRING",
+          "value": "Client"
         }
       ]
     },
@@ -762,22 +770,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "Reliable"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Unreliable"
-                }
-              ]
-            },
-            "named": true,
-            "value": "event_type_value"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "event_type_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         },
         {
@@ -791,6 +794,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "event_type_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Reliable"
+        },
+        {
+          "type": "STRING",
+          "value": "Unreliable"
         }
       ]
     },
@@ -809,34 +825,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "ManyAsync"
-                },
-                {
-                  "type": "STRING",
-                  "value": "ManySync"
-                },
-                {
-                  "type": "STRING",
-                  "value": "SingleAsync"
-                },
-                {
-                  "type": "STRING",
-                  "value": "SingleSync"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Polling"
-                }
-              ]
-            },
-            "named": true,
-            "value": "event_call_value"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "event_call_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         },
         {
@@ -850,6 +849,31 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "event_call_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ManyAsync"
+        },
+        {
+          "type": "STRING",
+          "value": "ManySync"
+        },
+        {
+          "type": "STRING",
+          "value": "SingleAsync"
+        },
+        {
+          "type": "STRING",
+          "value": "SingleSync"
+        },
+        {
+          "type": "STRING",
+          "value": "Polling"
         }
       ]
     },
@@ -1085,22 +1109,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "Async"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Sync"
-                }
-              ]
-            },
-            "named": true,
-            "value": "function_call_value"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "function_call_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         },
         {
@@ -1114,6 +1133,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "function_call_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Async"
+        },
+        {
+          "type": "STRING",
+          "value": "Sync"
         }
       ]
     },
