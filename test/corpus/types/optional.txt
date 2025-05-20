@@ -106,9 +106,11 @@ type MaybeEnum = enum {
     name: (identifier)
     value: (optional_type
       inner: (enum_type
-        (enum_unit_type
-          (identifier)
-          (identifier)
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
           (identifier))))))
 
 ==================

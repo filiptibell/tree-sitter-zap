@@ -15,8 +15,7 @@ type Empty4 = map { [string]: u32 }
     value: (struct_type))
   (type_declaration
     name: (identifier)
-    value: (enum_type
-      (enum_unit_type)))
+    value: (enum_type))
   (type_declaration
     name: (identifier)
     value: (set_type
@@ -64,8 +63,9 @@ type ComplexOptionals = struct {
         name: (identifier)
         type: (optional_type
           inner: (enum_type
-            (enum_unit_type
-              (identifier)
+            (enum_variant
+              (identifier))
+            (enum_variant
               (identifier))))))))
 
 ==================
@@ -155,9 +155,11 @@ type Kitchen = map {
           name: (identifier)
           type: (set_type
             type: (enum_type
-              (enum_unit_type
-                (identifier)
-                (identifier)
+              (enum_variant
+                (identifier))
+              (enum_variant
+                (identifier))
+              (enum_variant
                 (identifier)))))
         properties: (property
           name: (identifier)
@@ -172,19 +174,18 @@ type Kitchen = map {
           type: (map_type
             key_type: (primitive_type)
             value_type: (enum_type
-              (enum_tagged_type
-                (string)
-                (enum_tagged_variant
+              tag: (string)
+              (enum_variant
+                (identifier)
+                properties: (property
                   name: (identifier)
-                  properties: (property
-                    name: (identifier)
-                    type: (primitive_type)))
-                (enum_tagged_variant
+                  type: (primitive_type)))
+              (enum_variant
+                (identifier)
+                properties: (property
                   name: (identifier)
-                  properties: (property
-                    name: (identifier)
-                    type: (primitive_type
-                      (range
-                        (exclusive_range
-                          (number)
-                          (number))))))))))))))
+                  type: (primitive_type
+                    (range
+                      (exclusive_range
+                        (number)
+                        (number)))))))))))))

@@ -500,24 +500,27 @@
       ]
     },
     "enum_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "enum_unit_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "enum_tagged_type"
-        }
-      ]
-    },
-    "enum_unit_type": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "enum"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "tag",
+              "content": {
+                "type": "SYMBOL",
+                "name": "string"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -530,7 +533,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "enum_variant"
               },
               {
                 "type": "CHOICE",
@@ -553,61 +556,12 @@
         }
       ]
     },
-    "enum_tagged_type": {
+    "enum_variant": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "STRING",
-          "value": "enum"
-        },
         {
           "type": "SYMBOL",
-          "name": "string"
-        },
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "enum_tagged_variant"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
-    },
-    "enum_tagged_variant": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "name": "identifier"
         },
         {
           "type": "CHOICE",

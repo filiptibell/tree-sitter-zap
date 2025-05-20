@@ -115,23 +115,17 @@ module.exports = grammar({
       seq("struct", field("properties", seq("{", repeat($.property), "}"))),
 
     // Enums
-    enum_type: ($) => choice($.enum_unit_type, $.enum_tagged_type),
-
-    enum_unit_type: ($) =>
-      seq("enum", "{", repeat(seq($.identifier, optional(","))), "}"),
-
-    enum_tagged_type: ($) =>
+    enum_type: ($) =>
       seq(
         "enum",
-        $.string,
+        optional(field("tag", $.string)),
         "{",
-        repeat(seq($.enum_tagged_variant, optional(","))),
+        repeat(seq($.enum_variant, optional(","))),
         "}",
       ),
-
-    enum_tagged_variant: ($) =>
+    enum_variant: ($) =>
       seq(
-        field("name", $.identifier),
+        $.identifier,
         optional(field("properties", seq("{", repeat($.property), "}"))),
       ),
 
