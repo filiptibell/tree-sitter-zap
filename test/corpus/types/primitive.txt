@@ -13,19 +13,24 @@ type MyUInt = u32
 (source_file
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type)))
+    value: (type
+      (primitive_type))))
 
 ==================
 Roblox types
@@ -48,39 +53,54 @@ type PlayerInstanceSpaced = Instance (Player)
 (source_file
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type))
+    value: (type
+      (primitive_type)))
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-    	(identifier)))
+    value: (type
+      (primitive_type)
+      (range
+        (range_ident
+          (identifier)))))
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-    	(identifier))))
+    value: (type
+      (primitive_type)
+      (range
+        (range_ident
+          (identifier))))))
 
 ==================
 Range constraints
@@ -97,80 +117,89 @@ type ExactString = string(30)       -- Exactly 30
 (source_file
   (type_declaration
     name: (identifier)
-    value: (primitive_type
+    value: (type
+      (primitive_type)
       (range
-        (exclusive_range
+        (range_inexact
           (number)
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
+    value: (type
+      (primitive_type)
       (range
-        (exclusive_range
+        (range_inexact
           (number)
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
+    value: (type
+      (primitive_type)
       (range
-        (exclusive_range
+        (range_inexact
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
+    value: (type
+      (primitive_type)
       (range
-        (exclusive_range
+        (range_inexact
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
+    value: (type
+      (primitive_type)
       (range
-        (exact_range
+        (range_exact
           (number)))))
   (comment))
 
 ==================
-Inclusive ranges
+Array constraints
 ==================
 
-type SmallNumber = u32[0..10]      -- Between 0 and 10, inclusive
-type BigNumber = u32[100..]        -- 100 or more
-type MaxNumber = u32[..50]         -- Up to 50
-type ExactNumber = u32[30]         -- Exactly 30
+type SmallNumber = u32[0..10]      -- Between 0 and 10 values, inclusive
+type BigNumber = u32[100..]        -- 100 or more values
+type MaxNumber = u32[..50]         -- Up to 50 values
+type ExactNumber = u32[30]         -- Exactly 30 values
 
 ---
 
 (source_file
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-      (range
-        (inclusive_range
+    value: (type
+      (primitive_type)
+      (array
+        (array_inexact
           (number)
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-      (range
-        (inclusive_range
+    value: (type
+      (primitive_type)
+      (array
+        (array_inexact
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-      (range
-        (inclusive_range
+    value: (type
+      (primitive_type)
+      (array
+        (array_inexact
           (number)))))
   (comment)
   (type_declaration
     name: (identifier)
-    value: (primitive_type
-      (range
-        (exact_range
+    value: (type
+      (primitive_type)
+      (array
+        (array_exact
           (number)))))
   (comment))
