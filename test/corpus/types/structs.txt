@@ -10,7 +10,8 @@ type Empty = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type)))
+    value: (type
+      (struct_type))))
 
 ==================
 Simple struct
@@ -27,16 +28,20 @@ type Point = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type)))))
+    value: (type
+      (struct_type
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))
 
 ==================
 Mixed types struct
@@ -57,33 +62,40 @@ type Player = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      properties: (property
-        name: (identifier)
-        type: (primitive_type
-          (range
-            (exclusive_range
-              (number)
-              (number)))))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type
-          (range
-            (inclusive_range
-              (number)
-              (number)))))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (struct_type
-          properties: (property
-            name: (identifier)
-            type: (primitive_type))
-          properties: (property
-            name: (identifier)
-            type: (primitive_type)))))))
+    value: (type
+      (struct_type
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (struct_type
+              properties: (property
+                name: (identifier)
+                type: (type
+                  (primitive_type)))
+              properties: (property
+                name: (identifier)
+                type: (type
+                  (primitive_type))))))))))
 
 ==================
 With comments
@@ -104,18 +116,23 @@ type Config = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      (comment)
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      (comment)
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type)))))
+    value: (type
+      (struct_type
+        (comment)
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (comment)
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))
