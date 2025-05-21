@@ -27,94 +27,87 @@ module.exports = grammar({
       ),
 
     // Comments
+
     doc_comment: ($) => token(seq("---", /.*/)),
     comment: ($) => token(seq("--", /.*/)),
 
     // Identifiers
+
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    // Options
-    option_declaration: ($) =>
+    // Other values
+
+    string: () => token(/"[^"]*"/),
+    number: () => /\d+/,
+    boolean: () => choice("true", "false"),
+    property: ($) =>
       seq(
-        "opt",
-        $.identifier,
-        "=",
-        choice($.string, $.number, $.boolean, $.identifier),
+        field("name", $.identifier),
+        ":",
+        field("type", $.type),
+        optional(","),
       ),
 
     // Types
-    type_declaration: ($) =>
-      seq("type", field("name", $.identifier), "=", field("value", $._type)),
-    _type: ($) =>
-      choice(
-        $.optional_type,
-        $.primitive_type,
-        $.struct_type,
-        $.enum_type,
-        $.set_type,
-        $.map_type,
-        $.identifier,
-      ),
 
-    optional_type: ($) =>
-      seq(
-        field(
-          "inner",
-          choice(
-            $.primitive_type,
-            $.struct_type,
-            $.enum_type,
-            $.set_type,
-            $.map_type,
-            $.identifier,
-          ),
-        ),
-        "?",
-      ),
-
-    primitive_type: ($) =>
+    type: ($) =>
       seq(
         choice(
-          "string",
-          "boolean",
-          "f64",
-          "f32",
-          "u8",
-          "u16",
-          "u32",
-          "i8",
-          "i16",
-          "i32",
-          "CFrame",
-          "AlignedCFrame",
-          "Vector3",
-          "Vector2",
-          "DateTime",
-          "DateTimeMillis",
-          "Color3",
-          "BrickColor",
-          "Instance",
-          seq("Instance", "(", $.identifier, ")"),
+          $.optional_type,
+          $.primitive_type,
+          $.struct_type,
+          $.enum_type,
+          $.set_type,
+          $.map_type,
+          $.identifier,
         ),
         optional($.range),
+        optional($.array),
       ),
 
-    // Ranges
-    range: ($) => choice($.inclusive_range, $.exclusive_range, $.exact_range),
+    optional_type: ($) => seq(field("type", $.type), "?"),
 
-    inclusive_range: ($) =>
-      seq("[", optional($.number), "..", optional($.number), "]"),
+    primitive_type: ($) =>
+      choice(
+        "string",
+        "boolean",
+        "f64",
+        "f32",
+        "u8",
+        "u16",
+        "u32",
+        "i8",
+        "i16",
+        "i32",
+        "CFrame",
+        "AlignedCFrame",
+        "Vector3",
+        "Vector2",
+        "DateTime",
+        "DateTimeMillis",
+        "Color3",
+        "BrickColor",
+        "Instance",
+      ),
 
-    exclusive_range: ($) =>
+    // Modifiers: Ranges / Arrays
+
+    range: ($) => choice($.range_ident, $.range_exact, $.range_inexact),
+    range_ident: ($) => seq("(", $.identifier, ")"),
+    range_exact: ($) => seq("(", $.number, ")"),
+    range_inexact: ($) =>
       seq("(", optional($.number), "..", optional($.number), ")"),
 
-    exact_range: ($) => seq(choice("[", "("), $.number, choice("]", ")")),
+    array: ($) => choice($.array_exact, $.array_inexact),
+    array_exact: ($) => seq("[", $.number, "]"),
+    array_inexact: ($) =>
+      seq("[", optional($.number), "..", optional($.number), "]"),
 
-    // Structs
+    // Collections: Structs / Enums / Maps / Sets
+
     struct_type: ($) =>
       seq("struct", field("properties", seq("{", repeat($.property), "}"))),
 
-    // Enums
     enum_type: ($) =>
       seq(
         "enum",
@@ -129,7 +122,22 @@ module.exports = grammar({
         optional(field("properties", seq("{", repeat($.property), "}"))),
       ),
 
-    // Events
+    map_type: ($) =>
+      seq(
+        "map",
+        "{",
+        "[",
+        field("key_type", $.type),
+        "]",
+        ":",
+        field("value_type", $.type),
+        "}",
+      ),
+
+    set_type: ($) => seq("set", "{", field("type", $.type), "}"),
+
+    // Declarations: Events
+
     event_declaration: ($) =>
       seq(
         "event",
@@ -177,7 +185,7 @@ module.exports = grammar({
       choice("ManyAsync", "ManySync", "SingleAsync", "SingleSync", "Polling"),
 
     event_data_field: ($) =>
-      seq("data", ":", choice($.event_data_tuple, $._type), optional(",")),
+      seq("data", ":", choice($.event_data_tuple, $.type), optional(",")),
 
     event_data_tuple: ($) =>
       seq(
@@ -185,15 +193,15 @@ module.exports = grammar({
         optional(
           seq(
             choice(
-              seq(field("name", $.identifier), ":", field("type", $._type)),
-              field("type", $._type),
+              seq(field("name", $.identifier), ":", field("type", $.type)),
+              field("type", $.type),
             ),
             repeat(
               seq(
                 ",",
                 choice(
-                  seq(field("name", $.identifier), ":", field("type", $._type)),
-                  field("type", $._type),
+                  seq(field("name", $.identifier), ":", field("type", $.type)),
+                  field("type", $.type),
                 ),
               ),
             ),
@@ -203,7 +211,8 @@ module.exports = grammar({
         ")",
       ),
 
-    // Functions
+    // Declarations: Functions
+
     function_declaration: ($) =>
       seq(
         "funct",
@@ -236,7 +245,7 @@ module.exports = grammar({
         ":",
         choice(
           $.event_data_tuple, // We can reuse the tuple syntax from events
-          $._type,
+          $.type,
         ),
         optional(","),
       ),
@@ -247,37 +256,22 @@ module.exports = grammar({
         ":",
         choice(
           $.event_data_tuple, // We can reuse the tuple syntax from events
-          $._type,
+          $.type,
         ),
         optional(","),
       ),
 
-    // Sets
-    set_type: ($) => seq("set", "{", field("type", $._type), "}"),
+    // Declarations: Options / Types
 
-    // Maps
-    map_type: ($) =>
+    option_declaration: ($) =>
       seq(
-        "map",
-        "{",
-        "[",
-        field("key_type", $._type),
-        "]",
-        ":",
-        field("value_type", $._type),
-        "}",
+        "opt",
+        $.identifier,
+        "=",
+        choice($.string, $.number, $.boolean, $.identifier),
       ),
 
-    // Basic values
-    string: () => token(/"[^"]*"/),
-    number: () => /\d+/,
-    boolean: () => choice("true", "false"),
-    property: ($) =>
-      seq(
-        field("name", $.identifier),
-        ":",
-        field("type", $._type),
-        optional(","),
-      ),
+    type_declaration: ($) =>
+      seq("type", field("name", $.identifier), "=", field("value", $.type)),
   },
 });

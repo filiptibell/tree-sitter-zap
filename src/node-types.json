@@ -1,5 +1,54 @@
 [
   {
+    "type": "array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_exact",
+          "named": true
+        },
+        {
+          "type": "array_inexact",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_exact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_inexact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "boolean",
     "named": true,
     "fields": {}
@@ -98,35 +147,11 @@
       "required": true,
       "types": [
         {
-          "type": "enum_type",
-          "named": true
-        },
-        {
           "type": "event_data_tuple",
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "map_type",
-          "named": true
-        },
-        {
-          "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "set_type",
-          "named": true
-        },
-        {
-          "type": "struct_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -151,31 +176,7 @@
         "required": false,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -275,36 +276,6 @@
     "fields": {}
   },
   {
-    "type": "exact_range",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "number",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "exclusive_range",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "number",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "function_args_field",
     "named": true,
     "fields": {},
@@ -313,35 +284,11 @@
       "required": true,
       "types": [
         {
-          "type": "enum_type",
-          "named": true
-        },
-        {
           "type": "event_data_tuple",
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "map_type",
-          "named": true
-        },
-        {
-          "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "set_type",
-          "named": true
-        },
-        {
-          "type": "struct_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -419,50 +366,11 @@
       "required": true,
       "types": [
         {
-          "type": "enum_type",
-          "named": true
-        },
-        {
           "type": "event_data_tuple",
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "map_type",
-          "named": true
-        },
-        {
-          "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "set_type",
-          "named": true
-        },
-        {
-          "type": "struct_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inclusive_range",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "number",
+          "type": "type",
           "named": true
         }
       ]
@@ -477,31 +385,7 @@
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -511,31 +395,7 @@
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -573,32 +433,12 @@
     "type": "optional_type",
     "named": true,
     "fields": {
-      "inner": {
+      "type": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -608,21 +448,7 @@
   {
     "type": "primitive_type",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "range",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "property",
@@ -643,31 +469,7 @@
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -683,15 +485,60 @@
       "required": true,
       "types": [
         {
-          "type": "exact_range",
+          "type": "range_exact",
           "named": true
         },
         {
-          "type": "exclusive_range",
+          "type": "range_ident",
           "named": true
         },
         {
-          "type": "inclusive_range",
+          "type": "range_inexact",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_exact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_ident",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_inexact",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number",
           "named": true
         }
       ]
@@ -706,31 +553,7 @@
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -794,6 +617,53 @@
     }
   },
   {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "enum_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "map_type",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "set_type",
+          "named": true
+        },
+        {
+          "type": "struct_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_declaration",
     "named": true,
     "fields": {
@@ -812,31 +682,7 @@
         "required": true,
         "types": [
           {
-            "type": "enum_type",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "map_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "primitive_type",
-            "named": true
-          },
-          {
-            "type": "set_type",
-            "named": true
-          },
-          {
-            "type": "struct_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -1051,11 +897,11 @@
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "struct",

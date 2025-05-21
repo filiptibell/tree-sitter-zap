@@ -12,19 +12,26 @@ type Empty4 = map { [string]: u32 }
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type))
+    value: (type
+      (struct_type)))
   (type_declaration
     name: (identifier)
-    value: (enum_type))
+    value: (type
+      (enum_type)))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type)))
+    value: (type
+      (set_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type))))))
 
 ==================
 Optional fields
@@ -42,31 +49,40 @@ type ComplexOptionals = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (primitive_type)))
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (primitive_type
-            (range
-              (inclusive_range
-                (number)
-                (number))))))
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (primitive_type)))
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (enum_type
-            (enum_variant
-              (identifier))
-            (enum_variant
-              (identifier))))))))
+    value: (type
+      (struct_type
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (primitive_type)))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (primitive_type)
+                (array
+                  (array_inexact
+                    (number)
+                    (number)))))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (primitive_type)))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (enum_type
+                  (enum_variant
+                    (identifier))
+                  (enum_variant
+                    (identifier)))))))))))
 
 ==================
 Deep nesting
@@ -95,28 +111,40 @@ type DeepStruct = struct {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (map_type
-        key_type: (primitive_type)
-        value_type: (map_type
-          key_type: (primitive_type)
-          value_type: (primitive_type)))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (map_type
+            key_type: (type
+              (primitive_type))
+            value_type: (type
+              (map_type
+                key_type: (type
+                  (primitive_type))
+                value_type: (type
+                  (primitive_type)))))))))
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      properties: (property
-        name: (identifier)
-        type: (struct_type
-          properties: (property
-            name: (identifier)
-            type: (struct_type
+    value: (type
+      (struct_type
+        properties: (property
+          name: (identifier)
+          type: (type
+            (struct_type
               properties: (property
                 name: (identifier)
-                type: (struct_type
-                  properties: (property
-                    name: (identifier)
-                    type: (primitive_type)))))))))))
+                type: (type
+                  (struct_type
+                    properties: (property
+                      name: (identifier)
+                      type: (type
+                        (struct_type
+                          properties: (property
+                            name: (identifier)
+                            type: (type
+                              (primitive_type))))))))))))))))
 
 ==================
 Mixed everything
@@ -144,48 +172,60 @@ type Kitchen = map {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))
-      value_type: (struct_type
-        properties: (property
-          name: (identifier)
-          type: (set_type
-            type: (enum_type
-              (enum_variant
-                (identifier))
-              (enum_variant
-                (identifier))
-              (enum_variant
-                (identifier)))))
-        properties: (property
-          name: (identifier)
-          type: (optional_type
-            inner: (primitive_type
-              (range
-                (inclusive_range
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number))))
+        value_type: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (set_type
+                  type: (type
+                    (enum_type
+                      (enum_variant
+                        (identifier))
+                      (enum_variant
+                        (identifier))
+                      (enum_variant
+                        (identifier)))))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (optional_type
+                  type: (type
+                    (primitive_type)
+                    (array
+                      (array_inexact
                   (number)
-                  (number))))))
-        properties: (property
-          name: (identifier)
-          type: (map_type
-            key_type: (primitive_type)
-            value_type: (enum_type
-              tag: (string)
-              (enum_variant
-                (identifier)
-                properties: (property
-                  name: (identifier)
-                  type: (primitive_type)))
-              (enum_variant
-                (identifier)
-                properties: (property
-                  name: (identifier)
-                  type: (primitive_type
-                    (range
-                      (exclusive_range
-                        (number)
-                        (number)))))))))))))
+                  (number)))))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (map_type
+                  key_type: (type
+                    (primitive_type))
+                  value_type: (type
+                    (enum_type
+                      tag: (string)
+                      (enum_variant
+                        (identifier)
+                        properties: (property
+                          name: (identifier)
+                          type: (type
+                            (primitive_type))))
+                      (enum_variant
+                        (identifier)
+                        properties: (property
+                          name: (identifier)
+                          type: (type
+                            (primitive_type)
+                            (range
+                              (range_inexact
+                                (number)
+                                (number)))))))))))))))))

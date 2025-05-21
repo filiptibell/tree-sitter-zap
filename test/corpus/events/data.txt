@@ -35,7 +35,8 @@ event VectorEvent = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (primitive_type)))
+      (type
+        (primitive_type))))
   (event_declaration
     name: (identifier)
     (event_from_field
@@ -45,9 +46,10 @@ event VectorEvent = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (primitive_type
-        (range
-          (inclusive_range
+      (type
+        (primitive_type)
+        (array
+          (array_inexact
             (number)
             (number))))))
   (event_declaration
@@ -59,7 +61,8 @@ event VectorEvent = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (primitive_type))))
+      (type
+        (primitive_type)))))
 
 ==================
 Unnamed tuple data
@@ -92,9 +95,12 @@ event RangedValues = {
       value: (event_call_value))
     (event_data_field
       (event_data_tuple
-        type: (primitive_type)
-        type: (primitive_type)
-        type: (primitive_type))))
+        type: (type
+          (primitive_type))
+        type: (type
+          (primitive_type))
+        type: (type
+          (primitive_type)))))
   (event_declaration
     name: (identifier)
     (event_from_field
@@ -105,17 +111,20 @@ event RangedValues = {
       value: (event_call_value))
     (event_data_field
       (event_data_tuple
-        type: (primitive_type
+        type: (type
+          (primitive_type)
           (range
-            (exclusive_range
+            (range_inexact
               (number)
               (number))))
-        type: (primitive_type
-          (range
-            (inclusive_range
+        type: (type
+          (primitive_type)
+          (array
+            (array_inexact
               (number)
               (number))))
-        type: (primitive_type)))))
+        type: (type
+          (primitive_type))))))
 
 ==================
 Named tuple data
@@ -158,17 +167,20 @@ event ItemUpdate = {
     (event_data_field
       (event_data_tuple
         name: (identifier)
-        type: (primitive_type)
+        type: (type
+          (primitive_type))
         name: (identifier)
-        type: (primitive_type
-          (range
-            (inclusive_range
+        type: (type
+          (primitive_type)
+          (array
+            (array_inexact
               (number)
               (number))))
         name: (identifier)
-        type: (primitive_type
+        type: (type
+          (primitive_type)
           (range
-            (exclusive_range
+            (range_inexact
               (number)
               (number)))))))
   (event_declaration
@@ -182,13 +194,17 @@ event ItemUpdate = {
     (event_data_field
       (event_data_tuple
         name: (identifier)
-        type: (primitive_type)
+        type: (type
+          (primitive_type))
         name: (identifier)
-        type: (primitive_type)
+        type: (type
+          (primitive_type))
         name: (identifier)
-        type: (primitive_type)
+        type: (type
+          (primitive_type))
         name: (identifier)
-        type: (primitive_type)))))
+        type: (type
+          (primitive_type))))))
 
 ==================
 With comments
@@ -225,18 +241,21 @@ event PlayerUpdate = {
       (event_data_tuple
         (comment)
         name: (identifier)
-        type: (primitive_type)
+        type: (type
+          (primitive_type))
         (comment)
         name: (identifier)
-        type: (primitive_type
-          (range
-            (inclusive_range
+        type: (type
+          (primitive_type)
+          (array
+            (array_inexact
               (number)
               (number))))
         (comment)
         name: (identifier)
-        type: (primitive_type
+        type: (type
+          (primitive_type)
           (range
-            (exclusive_range
+            (range_inexact
               (number)
               (number))))))))
