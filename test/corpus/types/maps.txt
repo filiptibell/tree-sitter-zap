@@ -12,24 +12,36 @@ type StringToVector = map { [string]: Vector3 }
 (source_file
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type)))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type)))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type)))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type))))))
 
 ==================
 Maps with ranges
@@ -44,35 +56,44 @@ type Scores = map { [string(1..16)]: u8 }
 (source_file
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))
-      value_type: (primitive_type
-        (range
-          (inclusive_range
-            (number)
-            (number))))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number))))
+        value_type: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (primitive_type
-        (range
-          (inclusive_range
-            (number)
-            (number))))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))
-      value_type: (primitive_type))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number))))
+        value_type: (type
+          (primitive_type))))))
 
 ==================
 Maps with structs
@@ -98,37 +119,48 @@ type GameState = map {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type)
-      value_type: (struct_type
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type))))))))
   (type_declaration
     name: (identifier)
-    value: (map_type
-      key_type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))
-      value_type: (struct_type
-        properties: (property
-          name: (identifier)
-          type: (primitive_type
-            (range
-              (inclusive_range
-                (number)
-                (number)))))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))))))
+    value: (type
+      (map_type
+        key_type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number))))
+        value_type: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)
+                (array
+                  (array_inexact
+                    (number)
+                    (number)))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))))))))
 
 ==================
 Maps with comments
@@ -152,18 +184,24 @@ type Players = map {
   (comment)
   (type_declaration
     name: (identifier)
-    value: (map_type
-      (comment)
-      key_type: (primitive_type)
-      value_type: (struct_type
+    value: (type
+      (map_type
         (comment)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        (comment)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))))))
+        key_type: (type
+          (primitive_type))
+        value_type: (type
+          (struct_type
+            (comment)
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            (comment)
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))))))))
