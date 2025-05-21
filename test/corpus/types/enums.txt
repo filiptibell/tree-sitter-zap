@@ -14,15 +14,16 @@ type Status = enum {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (enum_type
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier)))))
+    value: (type
+      (enum_type
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))))))
 
 ==================
 Unit enum with comments
@@ -46,25 +47,26 @@ type Direction = enum {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (enum_type
-      (comment)
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (comment)
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier)))))
+    value: (type
+      (enum_type
+        (comment)
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (comment)
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))
+        (enum_variant
+          (identifier))))))
 
 ==================
 Simple tagged enum
@@ -81,23 +83,27 @@ type Value = enum "type" {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (enum_type
-      tag: (string)
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))))))
+    value: (type
+      (enum_type
+        tag: (string)
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))))))
 
 ==================
 Complex tagged enum
@@ -131,45 +137,56 @@ type Shape = enum "kind" {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (enum_type
-      tag: (string)
-      (comment)
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))
-      (comment)
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))
-      (enum_variant
-        (identifier)
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))))))
+    value: (type
+      (enum_type
+        tag: (string)
+        (comment)
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))
+        (comment)
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))
+        (enum_variant
+          (identifier)
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))))))
