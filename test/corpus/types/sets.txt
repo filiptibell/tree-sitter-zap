@@ -12,23 +12,31 @@ type VectorSet = set { Vector3 }
 (source_file
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type)))
+    value: (type
+      (set_type
+        type: (type
+      	  (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type)))
+    value: (type
+      (set_type
+        type: (type
+      	  (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type)))
+    value: (type
+      (set_type
+        type: (type
+      	  (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type))))
+    value: (type
+      (set_type
+        type: (type
+      	  (primitive_type))))))
 
 ==================
-Sets with ranges
+Sets with modifiers
 ==================
 
 type SmallStrings = set { string(0..10) }
@@ -40,26 +48,32 @@ type ExactSize = set { string(20) }
 (source_file
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))))
+    value: (type
+      (set_type
+        type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type
-        (range
-          (inclusive_range
-            (number))))))
+    value: (type
+      (set_type
+        type: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type
-        (range
-          (exact_range
-            (number)))))))
+    value: (type
+      (set_type
+        type: (type
+          (primitive_type)
+          (range
+            (range_exact
+              (number))))))))
 
 ==================
 Sets with comments
@@ -79,14 +93,18 @@ type Items = set {
   (comment)
   (type_declaration
     name: (identifier)
-    value: (set_type
-      type: (primitive_type)))
+    value: (type
+      (set_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (set_type
-      (comment)
-      type: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number)))))))
+    value: (type
+      (set_type
+        (comment)
+        type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number))))))))
