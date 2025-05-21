@@ -12,20 +12,28 @@ type MaybeCFrame = CFrame?
 (source_file
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type)))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type)))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type)))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type))))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type))))))
 
 ==================
 Optional with ranges
@@ -40,26 +48,32 @@ type MaybeExactSize = string(20)?
 (source_file
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type
-        (range
-          (exclusive_range
-            (number)
-            (number))))))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)
+          (range
+            (range_inexact
+              (number)
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type
-        (range
-          (inclusive_range
-            (number))))))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)))))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type
-        (range
-          (exact_range
-            (number)))))))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)
+          (range
+            (range_exact
+              (number))))))))
 
 ==================
 Optional complex types
@@ -83,35 +97,48 @@ type MaybeEnum = enum {
 (source_file
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (struct_type
-        properties: (property
-          name: (identifier)
-          type: (primitive_type))
-        properties: (property
-          name: (identifier)
-          type: (primitive_type)))))
+    value: (type
+      (optional_type
+        type: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type))))))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (set_type
-        type: (primitive_type))))
+    value: (type
+      (optional_type
+        type: (type
+          (set_type
+            type: (type
+              (primitive_type)))))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (map_type
-        key_type: (primitive_type)
-        value_type: (primitive_type))))
+    value: (type
+      (optional_type
+        type: (type
+          (map_type
+            key_type: (type
+              (primitive_type))
+            value_type: (type
+              (primitive_type)))))))
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (enum_type
-        (enum_variant
-          (identifier))
-        (enum_variant
-          (identifier))
-        (enum_variant
-          (identifier))))))
+    value: (type
+      (optional_type
+        type: (type
+          (enum_type
+            (enum_variant
+              (identifier))
+            (enum_variant
+              (identifier))
+            (enum_variant
+              (identifier))))))))
 
 ==================
 Optional with comments
@@ -135,28 +162,37 @@ type PlayerData = struct {
   (comment)
   (type_declaration
     name: (identifier)
-    value: (optional_type
-      inner: (primitive_type)))
+    value: (type
+      (optional_type
+        type: (type
+          (primitive_type)))))
   (type_declaration
     name: (identifier)
-    value: (struct_type
-      (comment)
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (primitive_type)))
-      properties: (property
-        name: (identifier)
-        type: (optional_type
-          inner: (primitive_type
-            (range
-              (exclusive_range
-                (number)
-                (number))))))
-      (comment)
-      properties: (property
-        name: (identifier)
-        type: (primitive_type))
-      properties: (property
-        name: (identifier)
-        type: (primitive_type)))))
+    value: (type
+      (struct_type
+        (comment)
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (primitive_type)))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (optional_type
+              type: (type
+                (primitive_type)
+                (range
+                  (range_inexact
+                    (number)
+                    (number)))))))
+        (comment)
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))
