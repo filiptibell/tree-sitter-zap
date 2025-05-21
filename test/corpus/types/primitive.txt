@@ -106,15 +106,23 @@ type PlayerInstanceSpaced = Instance (Player)
 Range constraints
 ==================
 
-type SmallString = string(0..10)    -- Between 0 and 10
-type LongString = string(20..100)   -- Between 20 and 100
-type OpenString = string(10..)      -- At least 10
-type MaxString = string(..50)       -- At most 50
-type ExactString = string(30)       -- Exactly 30
+type SmallString = string()       -- Empty / incomplete (probably typing)
+type SmallString = string(0..10)  -- Between 0 and 10
+type LongString = string(20..100) -- Between 20 and 100
+type OpenString = string(10..)    -- At least 10
+type MaxString = string(..50)     -- At most 50
+type ExactString = string(30)     -- Exactly 30
 
 ---
 
 (source_file
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (range
+        (range_empty))))
+  (comment)
   (type_declaration
     name: (identifier)
     value: (type
@@ -162,14 +170,22 @@ type ExactString = string(30)       -- Exactly 30
 Array constraints
 ==================
 
-type SmallNumber = u32[0..10]      -- Between 0 and 10 values, inclusive
-type BigNumber = u32[100..]        -- 100 or more values
-type MaxNumber = u32[..50]         -- Up to 50 values
-type ExactNumber = u32[30]         -- Exactly 30 values
+type StringArray  = u32[]      -- Unlimited
+type FewNumbers   = u32[0..10] -- Between 0 and 10 values, inclusive
+type SomeNumbers  = u32[..50]  -- Up to 50 values
+type ManyNumbers  = u32[100..] -- 100 or more values
+type ExactNumbers = u32[30]    -- Exactly 30 values
 
 ---
 
 (source_file
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (array
+        (array_empty))))
+  (comment)
   (type_declaration
     name: (identifier)
     value: (type

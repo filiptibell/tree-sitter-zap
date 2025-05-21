@@ -92,13 +92,16 @@ module.exports = grammar({
 
     // Modifiers: Ranges / Arrays
 
-    range: ($) => choice($.range_ident, $.range_exact, $.range_inexact),
+    range: ($) =>
+      choice($.range_empty, $.range_ident, $.range_exact, $.range_inexact),
+    range_empty: () => seq("(", ")"),
     range_ident: ($) => seq("(", $.identifier, ")"),
     range_exact: ($) => seq("(", $.number, ")"),
     range_inexact: ($) =>
       seq("(", optional($.number), "..", optional($.number), ")"),
 
-    array: ($) => choice($.array_exact, $.array_inexact),
+    array: ($) => choice($.array_empty, $.array_exact, $.array_inexact),
+    array_empty: () => seq("[", "]"),
     array_exact: ($) => seq("[", $.number, "]"),
     array_inexact: ($) =>
       seq("[", optional($.number), "..", optional($.number), "]"),
