@@ -94,13 +94,16 @@ event RangedValues = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (event_data_tuple
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type)))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type))))))
   (event_declaration
     name: (identifier)
     (event_from_field
@@ -110,21 +113,24 @@ event RangedValues = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (event_data_tuple
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
-        type: (type
-          (primitive_type))))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          type: (type
+            (primitive_type)))))))
 
 ==================
 Named tuple data
@@ -165,24 +171,27 @@ event ItemUpdate = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (event_data_tuple
-        name: (identifier)
-        type: (type
-          (primitive_type))
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number)))))))
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number))))))))
   (event_declaration
     name: (identifier)
     (event_from_field
@@ -192,19 +201,23 @@ event ItemUpdate = {
     (event_call_field
       value: (event_call_value))
     (event_data_field
-      (event_data_tuple
-        name: (identifier)
-        type: (type
-          (primitive_type))
-        name: (identifier)
-        type: (type
-          (primitive_type))
-        name: (identifier)
-        type: (type
-          (primitive_type))
-        name: (identifier)
-        type: (type
-          (primitive_type))))))
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))
 
 ==================
 With comments
@@ -238,24 +251,27 @@ event PlayerUpdate = {
       value: (event_call_value))
     (comment)
     (event_data_field
-      (event_data_tuple
+      (tuple
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))))))

@@ -90,6 +90,14 @@ module.exports = grammar({
         "Instance",
       ),
 
+    // Tuples
+
+    tuple: ($) => seq("(", repeat(seq($.tuple_value, optional(","))), ")"),
+    tuple_value: ($) => choice($._tuple_value_named, $._tuple_value_unnamed),
+    _tuple_value_named: ($) =>
+      seq(field("name", $.identifier), ":", field("type", $.type)),
+    _tuple_value_unnamed: ($) => field("type", $.type),
+
     // Modifiers: Ranges / Arrays
 
     range: ($) =>
@@ -188,31 +196,7 @@ module.exports = grammar({
       choice("ManyAsync", "ManySync", "SingleAsync", "SingleSync", "Polling"),
 
     event_data_field: ($) =>
-      seq("data", ":", choice($.event_data_tuple, $.type), optional(",")),
-
-    event_data_tuple: ($) =>
-      seq(
-        "(",
-        optional(
-          seq(
-            choice(
-              seq(field("name", $.identifier), ":", field("type", $.type)),
-              field("type", $.type),
-            ),
-            repeat(
-              seq(
-                ",",
-                choice(
-                  seq(field("name", $.identifier), ":", field("type", $.type)),
-                  field("type", $.type),
-                ),
-              ),
-            ),
-            optional(","),
-          ),
-        ),
-        ")",
-      ),
+      seq("data", ":", choice($.tuple, $.type), optional(",")),
 
     // Declarations: Functions
 
@@ -243,26 +227,10 @@ module.exports = grammar({
     function_call_value: () => choice("Async", "Sync"),
 
     function_args_field: ($) =>
-      seq(
-        "args",
-        ":",
-        choice(
-          $.event_data_tuple, // We can reuse the tuple syntax from events
-          $.type,
-        ),
-        optional(","),
-      ),
+      seq("args", ":", choice($.tuple, $.type), optional(",")),
 
     function_rets_field: ($) =>
-      seq(
-        "rets",
-        ":",
-        choice(
-          $.event_data_tuple, // We can reuse the tuple syntax from events
-          $.type,
-        ),
-        optional(","),
-      ),
+      seq("rets", ":", choice($.tuple, $.type), optional(",")),
 
     // Declarations: Options / Types
 

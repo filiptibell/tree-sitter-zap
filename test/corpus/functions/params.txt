@@ -86,49 +86,59 @@ funct RangedArgs = {
     (function_call_field
       value: (function_call_value))
     (function_args_field
-      (event_data_tuple
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type)))))
     (function_rets_field
-      (event_data_tuple
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type)))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type))))))
   (function_declaration
     name: (identifier)
     (function_call_field
       value: (function_call_value))
     (function_args_field
-      (event_data_tuple
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
-        type: (type
-          (primitive_type))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          type: (type
+            (primitive_type)))))
     (function_rets_field
-      (event_data_tuple
-        type: (type
-          (primitive_type))
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))))))
+      (tuple
+        (tuple_value
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))))))
 
 ==================
 Named tuple params
@@ -155,32 +165,37 @@ funct UpdatePlayer = {
     (function_call_field
       value: (function_call_value))
     (function_args_field
-      (event_data_tuple
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
-        name: (identifier)
-        type: (type
-          (primitive_type))))
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))))
     (function_rets_field
-      (event_data_tuple
-        name: (identifier)
-        type: (type
-          (primitive_type))
-        name: (identifier)
-        type: (type
-          (primitive_type))))))
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))
 
 ==================
 With comments
@@ -215,35 +230,40 @@ funct ComplexUpdate = {
       value: (function_call_value))
     (comment)
     (function_args_field
-      (event_data_tuple
+      (tuple
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (range
-            (range_inexact
-              (number)
-              (number))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (range
+              (range_inexact
+                (number)
+                (number)))))
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type)
-          (array
-            (array_inexact
-              (number)
-              (number))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)
+            (array
+              (array_inexact
+                (number)
+                (number)))))
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))))
     (comment)
     (function_rets_field
-      (event_data_tuple
+      (tuple
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))
         (comment)
-        name: (identifier)
-        type: (type
-          (primitive_type))))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (primitive_type)))))))

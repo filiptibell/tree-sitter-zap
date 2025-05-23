@@ -156,7 +156,7 @@
       "required": true,
       "types": [
         {
-          "type": "event_data_tuple",
+          "type": "tuple",
           "named": true
         },
         {
@@ -164,32 +164,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "event_data_tuple",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "type",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -293,7 +267,7 @@
       "required": true,
       "types": [
         {
-          "type": "event_data_tuple",
+          "type": "tuple",
           "named": true
         },
         {
@@ -375,7 +349,7 @@
       "required": true,
       "types": [
         {
-          "type": "event_data_tuple",
+          "type": "tuple",
           "named": true
         },
         {
@@ -629,6 +603,47 @@
           {
             "type": "}",
             "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "tuple",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "tuple_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tuple_value",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
           }
         ]
       }
@@ -915,11 +930,11 @@
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "struct",
