@@ -1,0 +1,485 @@
+==================
+Empty namespace
+==================
+
+namespace Empty = {}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)))
+
+==================
+Simple namespace with types
+==================
+
+namespace Math = {
+    type Point = Vector3
+    type Distance = f64
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))))
+
+==================
+Namespace with events
+==================
+
+namespace Network = {
+    event PlayerJoin = {
+        from: Server,
+        type: Reliable,
+        call: ManyAsync,
+        data: (name: string, id: u32)
+    }
+
+    event PlayerLeave = {
+        from: Server,
+        type: Reliable,
+        call: ManyAsync,
+        data: u32
+    }
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (event_declaration
+      name: (identifier)
+      (event_from_field
+        value: (event_from_value))
+      (event_type_field
+        value: (event_type_value))
+      (event_call_field
+        value: (event_call_value))
+      (event_data_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type))))))
+    (event_declaration
+      name: (identifier)
+      (event_from_field
+        value: (event_from_value))
+      (event_type_field
+        value: (event_type_value))
+      (event_call_field
+        value: (event_call_value))
+      (event_data_field
+        (type
+          (primitive_type))))))
+
+==================
+Namespace with functions
+==================
+
+namespace API = {
+    funct GetPlayerData = {
+        call: Async,
+        args: (player_id: u32),
+        rets: (success: boolean, data: string)
+    }
+
+    funct UpdateScore = {
+        call: Sync,
+        args: (player_id: u32, score: u32),
+        rets: boolean
+    }
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (function_declaration
+      name: (identifier)
+      (function_call_field
+        value: (function_call_value))
+      (function_args_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))))
+      (function_rets_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type))))))
+    (function_declaration
+      name: (identifier)
+      (function_call_field
+        value: (function_call_value))
+      (function_args_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))))
+      (function_rets_field
+        (type
+          (primitive_type))))))
+
+==================
+Namespace with options
+==================
+
+namespace Config = {
+    opt debug_mode = true
+    opt max_connections = 100
+    opt server_name = "MyServer"
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (option_declaration
+      (identifier)
+      (boolean))
+    (option_declaration
+      (identifier)
+      (number))
+    (option_declaration
+      (identifier)
+      (string))))
+
+==================
+Nested namespaces
+==================
+
+namespace Game = {
+    namespace Player = {
+        type Stats = struct {
+            health: u8[0..100],
+            mana: u8[0..100]
+        }
+
+        event Damage = {
+            from: Server,
+            type: Reliable,
+            call: ManyAsync,
+            data: (amount: u8, source: string)
+        }
+    }
+
+    namespace World = {
+        type Chunk = struct {
+            x: i32,
+            z: i32,
+            blocks: map { [Vector3]: string }
+        }
+    }
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)
+                (array
+                  (array_inexact
+                    (number)
+                    (number)))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)
+                (array
+                  (array_inexact
+                    (number)
+                    (number))))))))
+      (event_declaration
+        name: (identifier)
+        (event_from_field
+          value: (event_from_value))
+        (event_type_field
+          value: (event_type_value))
+        (event_call_field
+          value: (event_call_value))
+        (event_data_field
+          (tuple
+            (tuple_value
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            (tuple_value
+              name: (identifier)
+              type: (type
+                (primitive_type)))))))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (map_type
+                  key_type: (type
+                    (primitive_type))
+                  value_type: (type
+                    (primitive_type)))))))))))
+
+==================
+Mixed content namespace
+==================
+
+namespace Complete = {
+    -- Data types
+    type User = struct {
+        id: u32,
+        name: string(3..20),
+        role: enum {
+            Admin,
+            Moderator,
+            Player
+        }
+    }
+
+    -- Network events
+    event UserLogin = {
+        from: Client,
+        type: Reliable,
+        call: SingleAsync,
+        data: (username: string, password: string)
+    }
+
+    -- Network functions
+    funct ValidateUser = {
+        call: Async,
+        args: (user: User),
+        rets: (valid: boolean, error: string?)
+    }
+
+    -- Nested namespace
+    namespace Internal = {
+        type Secret = string(32)
+    }
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (comment)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (struct_type
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)
+              (range
+                (range_inexact
+                  (number)
+                  (number)))))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (enum_type
+                (enum_variant
+                  (identifier))
+                (enum_variant
+                  (identifier))
+                (enum_variant
+                  (identifier))))))))
+    (comment)
+    (event_declaration
+      name: (identifier)
+      (event_from_field
+        value: (event_from_value))
+      (event_type_field
+        value: (event_type_value))
+      (event_call_field
+        value: (event_call_value))
+      (event_data_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type))))))
+    (comment)
+    (function_declaration
+      name: (identifier)
+      (function_call_field
+        value: (function_call_value))
+      (function_args_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (identifier)))))
+      (function_rets_field
+        (tuple
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          (tuple_value
+            name: (identifier)
+            type: (type
+              (optional_type
+                type: (type
+                  (primitive_type))))))))
+    (comment)
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (primitive_type)
+          (range
+            (range_exact
+              (number))))))))
+
+==================
+Deep nesting
+==================
+
+namespace Level1 = {
+    namespace Level2 = {
+        namespace Level3 = {
+            namespace Level4 = {
+                type DeepType = string
+            }
+        }
+    }
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (namespace_declaration
+      name: (identifier)
+      (namespace_declaration
+        name: (identifier)
+        (namespace_declaration
+          name: (identifier)
+          (type_declaration
+            name: (identifier)
+            value: (type
+              (primitive_type))))))))
+
+==================
+With comments
+==================
+
+-- Main game namespace
+namespace Game = {
+    -- Player management
+    namespace Players = {
+        -- Player data structure
+        type Player = struct {
+            name: string,  -- Player display name
+            level: u32     -- Current level
+        }
+
+        -- Player joined event
+        event PlayerJoined = {
+            from: Server,
+            type: Reliable,
+            call: ManyAsync,
+            data: Player  -- Player that joined
+        }
+    }
+}
+
+---
+
+(source_file
+  (comment)
+  (namespace_declaration
+    name: (identifier)
+    (comment)
+    (namespace_declaration
+      name: (identifier)
+      (comment)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            (comment)
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)))
+            (comment))))
+      (comment)
+      (event_declaration
+        name: (identifier)
+        (event_from_field
+          value: (event_from_value))
+        (event_type_field
+          value: (event_type_value))
+        (event_call_field
+          value: (event_call_value))
+        (event_data_field
+          (type
+            (identifier)))
+        (comment)))))

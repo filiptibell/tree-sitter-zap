@@ -11,7 +11,7 @@ module.exports = grammar({
   name: "zap",
 
   word: ($) => $.identifier,
-
+  conflicts: ($) => [[$.namespaced_type, $.type]],
   extras: ($) => [/\s/, $.doc_comment, $.comment],
 
   rules: {
@@ -19,6 +19,7 @@ module.exports = grammar({
 
     _definition: ($) =>
       choice(
+        $.namespace_declaration,
         $.option_declaration,
         $.type_declaration,
         $.event_declaration,
@@ -53,6 +54,7 @@ module.exports = grammar({
     type: ($) =>
       seq(
         choice(
+          $.namespaced_type,
           $.optional_type,
           $.primitive_type,
           $.struct_type,
@@ -63,6 +65,12 @@ module.exports = grammar({
         ),
         optional($.range),
         optional($.array),
+      ),
+
+    namespaced_type: ($) =>
+      seq(
+        repeat(seq(field("namespace", $.identifier), ".")),
+        field("type", $.identifier),
       ),
 
     optional_type: ($) => seq(field("type", $.type), "?"),
@@ -146,6 +154,18 @@ module.exports = grammar({
       ),
 
     set_type: ($) => seq("set", "{", field("type", $.type), "}"),
+
+    // Declarations: Namespaces
+
+    namespace_declaration: ($) =>
+      seq(
+        "namespace",
+        field("name", $.identifier),
+        "=",
+        "{",
+        repeat($._definition),
+        "}",
+      ),
 
     // Declarations: Events
 

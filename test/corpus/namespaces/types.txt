@@ -1,0 +1,701 @@
+==================
+Simple namespace type reference
+==================
+
+namespace A = {
+    type Foo = string
+}
+
+type ReferenceAFoo = A.Foo
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        type: (identifier)))))
+
+==================
+Nested namespace type reference
+==================
+
+namespace A = {
+    namespace B = {
+        type Bar = u32
+    }
+}
+
+type ReferenceABBar = A.B.Bar
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (primitive_type)))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier)))))
+
+==================
+Multiple type references
+==================
+
+namespace Math = {
+    type Point = Vector3
+    type Distance = f64
+
+    namespace Advanced = {
+        type Matrix = struct {
+            data: f64[16]
+        }
+    }
+}
+
+type MyPoint = Math.Point
+type MyDistance = Math.Distance
+type MyMatrix = Math.Advanced.Matrix
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type)
+                (array
+                  (array_exact
+                    (number))))))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        type: (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        type: (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier)))))
+
+==================
+Type references in struct properties
+==================
+
+namespace Game = {
+    type PlayerId = u32
+    type PlayerName = string(3..20)
+
+    namespace Stats = {
+        type Health = u8[0..100]
+        type Mana = u8[0..100]
+    }
+}
+
+type Player = struct {
+    id: Game.PlayerId,
+    name: Game.PlayerName,
+    health: Game.Stats.Health,
+    mana: Game.Stats.Mana
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)
+        (range
+          (range_inexact
+            (number)
+            (number)))))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)
+              (number)))))
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (primitive_type)
+          (array
+            (array_inexact
+              (number)
+              (number)))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (struct_type
+        properties: (property
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              namespace: (identifier)
+              type: (identifier))))
+        properties: (property
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              namespace: (identifier)
+              type: (identifier))))))))
+
+==================
+Type references in events
+==================
+
+namespace Network = {
+    type UserId = u32
+    type Message = string(1..500)
+
+    namespace Chat = {
+        type Channel = enum {
+            Global,
+            Team,
+            Private
+        }
+    }
+}
+
+event SendMessage = {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync,
+    data: (
+        user: Network.UserId,
+        message: Network.Message,
+        channel: Network.Chat.Channel
+    )
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)
+        (range
+          (range_inexact
+            (number)
+            (number)))))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (enum_type
+            (enum_variant
+              (identifier))
+            (enum_variant
+              (identifier))
+            (enum_variant
+              (identifier)))))))
+  (event_declaration
+    name: (identifier)
+    (event_from_field
+      value: (event_from_value))
+    (event_type_field
+      value: (event_type_value))
+    (event_call_field
+      value: (event_call_value))
+    (event_data_field
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              namespace: (identifier)
+              type: (identifier))))))))
+
+==================
+Type references in functions
+==================
+
+namespace API = {
+    type RequestId = string
+    type Response = struct {
+        success: boolean,
+        data: string
+    }
+
+    namespace Auth = {
+        type Token = string(32)
+        type Permissions = set { string }
+    }
+}
+
+funct AuthenticateUser = {
+    call: Async,
+    args: (
+        request_id: API.RequestId,
+        token: API.Auth.Token
+    ),
+    rets: (
+        response: API.Response,
+        permissions: API.Auth.Permissions
+    )
+}
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (struct_type
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type)))
+          properties: (property
+            name: (identifier)
+            type: (type
+              (primitive_type))))))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (primitive_type)
+          (range
+            (range_exact
+              (number)))))
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (set_type
+            type: (type
+              (primitive_type)))))))
+  (function_declaration
+    name: (identifier)
+    (function_call_field
+      value: (function_call_value))
+    (function_args_field
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              namespace: (identifier)
+              type: (identifier))))))
+    (function_rets_field
+      (tuple
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              type: (identifier))))
+        (tuple_value
+          name: (identifier)
+          type: (type
+            (namespaced_type
+              namespace: (identifier)
+              namespace: (identifier)
+              type: (identifier))))))))
+
+==================
+Type references with modifiers
+==================
+
+namespace Data = {
+    type UserId = u32
+    type UserName = string
+
+    namespace Collections = {
+        type UserList = struct {
+            users: Data.UserId[]
+        }
+    }
+}
+
+type OptionalUser = Data.UserId?
+type UserArray = Data.UserId[0..100]
+type UserRange = Data.UserName(3..20)
+type UserMap = map { [Data.UserId]: Data.UserName }
+type UserSet = set { Data.UserId }
+type ComplexCollection = Data.Collections.UserList[1..10]?
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (namespaced_type
+                  namespace: (identifier)
+                  type: (identifier))
+                (array
+                  (array_empty)))))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (optional_type
+        type: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        type: (identifier))
+      (array
+        (array_inexact
+          (number)
+          (number)))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        type: (identifier))
+      (range
+        (range_inexact
+          (number)
+          (number)))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (map_type
+        key_type: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier)))
+        value_type: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (set_type
+        type: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (optional_type
+        type: (type
+          (namespaced_type
+            namespace: (identifier)
+            namespace: (identifier)
+            type: (identifier))
+          (array
+            (array_inexact
+              (number)
+              (number))))))))
+
+==================
+Deep namespace references
+==================
+
+namespace Level1 = {
+    namespace Level2 = {
+        namespace Level3 = {
+            namespace Level4 = {
+                type DeepType = string
+            }
+        }
+    }
+}
+
+type Reference = Level1.Level2.Level3.Level4.DeepType
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (namespace_declaration
+      name: (identifier)
+      (namespace_declaration
+        name: (identifier)
+        (namespace_declaration
+          name: (identifier)
+          (type_declaration
+            name: (identifier)
+            value: (type
+              (primitive_type)))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier)))))
+
+==================
+Mixed references and definitions
+==================
+
+namespace Core = {
+    type BaseId = u32
+    type BaseName = string
+
+    namespace User = {
+        type Id = Core.BaseId
+        type Name = Core.BaseName
+        type Profile = struct {
+            id: User.Id,
+            name: User.Name,
+            email: string
+        }
+    }
+}
+
+type UserProfile = Core.User.Profile
+type UserId = Core.User.Id
+
+---
+
+(source_file
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (namespace_declaration
+      name: (identifier)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier))))
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (namespaced_type
+            namespace: (identifier)
+            type: (identifier))))
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (namespaced_type
+                  namespace: (identifier)
+                  type: (identifier))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (namespaced_type
+                  namespace: (identifier)
+                  type: (identifier))))
+            properties: (property
+              name: (identifier)
+              type: (type
+                (primitive_type))))))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier)))))
+
+==================
+With comments
+==================
+
+-- Define base types
+namespace Base = {
+    type Id = u32        -- Unique identifier
+    type Name = string   -- Display name
+
+    -- User management namespace
+    namespace Users = {
+        -- User data structure
+        type User = struct {
+            id: Base.Id,     -- User ID
+            name: Base.Name  -- User name
+        }
+    }
+}
+
+-- Reference the nested type
+type MyUser = Base.Users.User  -- User from Base.Users namespace
+
+---
+
+(source_file
+  (comment)
+  (namespace_declaration
+    name: (identifier)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (comment)
+    (type_declaration
+      name: (identifier)
+      value: (type
+        (primitive_type)))
+    (comment)
+    (comment)
+    (namespace_declaration
+      name: (identifier)
+      (comment)
+      (type_declaration
+        name: (identifier)
+        value: (type
+          (struct_type
+            properties: (property
+              name: (identifier)
+              type: (type
+                (namespaced_type
+                  namespace: (identifier)
+                  type: (identifier))))
+            (comment)
+            properties: (property
+              name: (identifier)
+              type: (type
+                (namespaced_type
+                  namespace: (identifier)
+                  type: (identifier))))
+            (comment))))))
+  (comment)
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (namespaced_type
+        namespace: (identifier)
+        namespace: (identifier)
+        type: (identifier))))
+  (comment))
