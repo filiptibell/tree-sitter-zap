@@ -11,7 +11,10 @@ module.exports = grammar({
   name: "zap",
 
   word: ($) => $.identifier,
-  conflicts: ($) => [[$.namespaced_type, $.type]],
+  conflicts: ($) => [
+    [$.namespaced_type, $.type],
+    [$._primitive_instance_namespaced, $._primitive_instance_legacy],
+  ],
   extras: ($) => [/\s/, $.doc_comment, $.comment],
 
   rules: {
@@ -62,8 +65,6 @@ module.exports = grammar({
           $.set_type,
           $.map_type,
           $.identifier,
-          seq($.primitive_type, ".", $.primitive_spec),
-          seq($.primitive_type, "(", $.primitive_spec, ")"),
         ),
         optional($.range),
         optional($.array),
@@ -79,7 +80,6 @@ module.exports = grammar({
 
     primitive_type: ($) =>
       choice(
-        "string",
         "boolean",
         "f64",
         "f32",
@@ -97,8 +97,16 @@ module.exports = grammar({
         "DateTimeMillis",
         "Color3",
         "BrickColor",
-        "Instance",
+        $._primitive_string,
+        $._primitive_instance_namespaced,
+        $._primitive_instance_legacy,
       ),
+    _primitive_string: ($) =>
+      seq("string", optional(seq(".", $.primitive_spec))),
+    _primitive_instance_namespaced: ($) =>
+      seq("Instance", optional(seq(".", $.primitive_spec))),
+    _primitive_instance_legacy: ($) =>
+      seq("Instance", optional(seq("(", $.primitive_spec, ")"))),
     primitive_spec: ($) => $.identifier,
 
     // Tuples

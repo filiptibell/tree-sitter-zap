@@ -518,7 +518,17 @@
   {
     "type": "primitive_type",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "primitive_spec",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "property",
@@ -751,10 +761,6 @@
         },
         {
           "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "primitive_spec",
           "named": true
         },
         {
@@ -1018,11 +1024,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

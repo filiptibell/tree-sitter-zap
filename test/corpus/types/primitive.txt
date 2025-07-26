@@ -45,15 +45,15 @@ type MyString2 = string.binary
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier))))
+      (primitive_type
+        (primitive_spec
+          (identifier)))))
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier)))))
+      (primitive_type
+        (primitive_spec
+          (identifier))))))
 
 ==================
 Roblox types
@@ -115,27 +115,27 @@ type PlayerInstanceSpaced2 = Instance . Player
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier))))
+      (primitive_type
+        (primitive_spec
+          (identifier)))))
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier))))
+      (primitive_type
+        (primitive_spec
+          (identifier)))))
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier))))
+      (primitive_type
+        (primitive_spec
+          (identifier)))))
   (type_declaration
     name: (identifier)
     value: (type
-      (primitive_type)
-      (primitive_spec
-        (identifier)))))
+      (primitive_type
+        (primitive_spec
+          (identifier))))))
 
 ==================
 Range constraints
