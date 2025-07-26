@@ -13,7 +13,10 @@ module.exports = grammar({
   word: ($) => $.identifier,
   conflicts: ($) => [
     [$.namespaced_type, $.type],
+    [$._primitive_instance_namespaced, $._primitive_instance_namespaced],
     [$._primitive_instance_namespaced, $._primitive_instance_legacy],
+    [$._primitive_instance_namespaced, $._primitive_string],
+    [$._primitive_string, $._primitive_string],
   ],
   extras: ($) => [/\s/, $.doc_comment, $.comment],
 
@@ -102,11 +105,11 @@ module.exports = grammar({
         $._primitive_instance_legacy,
       ),
     _primitive_string: ($) =>
-      seq("string", optional(seq(".", $.primitive_spec))),
+      seq("string", optional(seq(".", optional($.primitive_spec)))),
     _primitive_instance_namespaced: ($) =>
-      seq("Instance", optional(seq(".", $.primitive_spec))),
+      seq("Instance", optional(seq(".", optional($.primitive_spec)))),
     _primitive_instance_legacy: ($) =>
-      seq("Instance", optional(seq("(", $.primitive_spec, ")"))),
+      seq("Instance", optional(seq("(", optional($.primitive_spec), ")"))),
     primitive_spec: ($) => $.identifier,
 
     // Tuples
