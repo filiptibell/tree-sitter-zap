@@ -62,6 +62,8 @@ module.exports = grammar({
           $.set_type,
           $.map_type,
           $.identifier,
+          seq($.primitive_type, ".", $.primitive_spec),
+          seq($.primitive_type, "(", $.primitive_spec, ")"),
         ),
         optional($.range),
         optional($.array),
@@ -97,6 +99,7 @@ module.exports = grammar({
         "BrickColor",
         "Instance",
       ),
+    primitive_spec: ($) => $.identifier,
 
     // Tuples
 
@@ -108,10 +111,8 @@ module.exports = grammar({
 
     // Modifiers: Ranges / Arrays
 
-    range: ($) =>
-      choice($.range_empty, $.range_ident, $.range_exact, $.range_inexact),
+    range: ($) => choice($.range_empty, $.range_exact, $.range_inexact),
     range_empty: () => seq("(", ")"),
-    range_ident: ($) => seq("(", $.identifier, ")"),
     range_exact: ($) => seq("(", $.number, ")"),
     range_inexact: ($) =>
       seq("(", optional($.number), "..", optional($.number), ")"),

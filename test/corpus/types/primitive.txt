@@ -33,6 +33,29 @@ type MyUInt = u32
       (primitive_type))))
 
 ==================
+Basic primitives with constraints
+==================
+
+type MyString1 = string.utf8
+type MyString2 = string.binary
+
+---
+
+(source_file
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (primitive_spec
+        (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (primitive_spec
+        (identifier)))))
+
+==================
 Roblox types
 ==================
 
@@ -47,6 +70,8 @@ type Block = BrickColor
 type AnyInstance = Instance
 type PlayerInstance = Instance(Player)
 type PlayerInstanceSpaced = Instance (Player)
+type PlayerInstance2 = Instance.Player
+type PlayerInstanceSpaced2 = Instance . Player
 
 ---
 
@@ -91,16 +116,26 @@ type PlayerInstanceSpaced = Instance (Player)
     name: (identifier)
     value: (type
       (primitive_type)
-      (range
-        (range_ident
-          (identifier)))))
+      (primitive_spec
+        (identifier))))
   (type_declaration
     name: (identifier)
     value: (type
       (primitive_type)
-      (range
-        (range_ident
-          (identifier))))))
+      (primitive_spec
+        (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (primitive_spec
+        (identifier))))
+  (type_declaration
+    name: (identifier)
+    value: (type
+      (primitive_type)
+      (primitive_spec
+        (identifier)))))
 
 ==================
 Range constraints

@@ -173,6 +173,44 @@
             {
               "type": "SYMBOL",
               "name": "identifier"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "primitive_type"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "primitive_spec"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "primitive_type"
+                },
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "primitive_spec"
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
             }
           ]
         },
@@ -333,6 +371,10 @@
         }
       ]
     },
+    "primitive_spec": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
     "tuple": {
       "type": "SEQ",
       "members": [
@@ -425,10 +467,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "range_ident"
-        },
-        {
-          "type": "SYMBOL",
           "name": "range_exact"
         },
         {
@@ -443,23 +481,6 @@
         {
           "type": "STRING",
           "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
-    "range_ident": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
         },
         {
           "type": "STRING",
